@@ -1,0 +1,39 @@
+{
+    "conections": [
+        {
+            "from": "nodoTask",
+            "from_port": 0,
+            "to": "@nodoTask@26",
+            "to_port": 0
+        },
+        {
+            "from": "nodoTask",
+            "from_port": 0,
+            "to": "@nodoTask@27",
+            "to_port": 0
+        }
+    ],
+    "nodes": [
+        {
+            "left": true,
+            "name_task": "Proyecto",
+            "parent": "",
+            "position": "Vector2( 412, 260 )",
+            "right": true
+        },
+        {
+            "left": true,
+            "name_task": "Programación",
+            "parent": "nodoTask",
+            "position": "Vector2( 541, 56 )",
+            "right": true
+        },
+        {
+            "left": true,
+            "name_task": "Diseño gafico",
+            "parent": "nodoTask",
+            "position": "Vector2( 521, 317 )",
+            "right": true
+        }
+    ]
+}

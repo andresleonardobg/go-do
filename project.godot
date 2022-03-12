@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="go-do"
+config/name="mind map"
 config/icon="res://icon.png"
 
 [autoload]
