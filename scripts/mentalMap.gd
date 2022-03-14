@@ -58,6 +58,12 @@ func _on_GraphEdit_connection_to_empty(from: String, _from_slot: int, release_po
 
 func _on_save_pressed() -> void:
 	Global.data["conections"] = panel_graph.get_connection_list()
+	
+	var nodetasks = get_tree().get_nodes_in_group("nodetask")
+	
+	for n in nodetasks:
+		n.send_data()
+	
 	Global.save_data()
 
 func load_data_connections() -> void:
@@ -79,8 +85,8 @@ func _on_load_pressed() -> void:
 			i["right"],
 			i["parent"]
 			)
-#
-#	if count == 3:
-#		print("Creando conexiones")
-#		for c in Global.data["conections"]:
-#			panle_graph.connect_node(c["from"],c["from_port"],c["to"],c["to_port"])
+	
+	for c in Global.data["conections"]:
+		get_node("PanelContainer/GraphEdit").connect_node(c["from"],c["from_port"],c["to"],c["to_port"])
+		
+	Global.data = {"nodes":[]}
