@@ -14,11 +14,11 @@ var window_new_task
 func _ready() -> void:
 	print(data)
 
-func add_new_node(pos:String, name_n:String, parent, enable_slot_left:bool, enable_slot_right:bool, parent_node:String):
+func add_new_node(pos:Vector2, name_n:String, parent, enable_slot_left:bool, enable_slot_right:bool, parent_node:String):
 	
 	var node_child = node.instance()
-	node_child.set_offset(str2var(pos))
-	node_child.rect_position = str2var(pos)
+	node_child.set_offset(pos)
+	node_child.rect_position = pos
 	node_child.name_task = name_n
 	node_child.parent_node = parent_node
 	node_child.set_slot_enabled_left(0, enable_slot_left)
