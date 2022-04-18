@@ -9,7 +9,7 @@ var position_new_node
 var node_parent = ""
 
 #panel graph edit
-onready var panel_graph = $PanelContainer/GraphEdit
+onready var panel_graph = $HSplitContainer/PanelContainer/GraphEdit
 
 #load node
 const node_task = preload("res://scenes/nodoTask.tscn")
@@ -75,6 +75,7 @@ func _on_load_pressed() -> void:
 	display_data()
 
 func _on_Accept_pressed() -> void:
+	$HSplitContainer/list_of_tasks.add_new_items( text_task.text )
 	if panel_graph.get_child_count() == 2:
 		Global.add_new_node(
 			center_window - Vector2(100, 40),
@@ -93,8 +94,8 @@ func _on_Accept_pressed() -> void:
 func _on_GraphEdit_node_selected(node: Node) -> void:
 	print(node)
 
+
 func _on_GraphEdit_connection_to_empty(from: String, _from_slot: int, release_position: Vector2) -> void:
 	window_new_task.popup()
 	position_new_node = release_position
 	node_parent = from
-	window_new_task.rect_position = release_position - Vector2(150, -40)

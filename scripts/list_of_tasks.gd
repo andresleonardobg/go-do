@@ -2,34 +2,34 @@ extends Control
 
 onready var tree_task = $PanelContainer/Tree
 
+var items : Array
+
+signal know_item(item)
+
 func _ready() -> void:
+	pass
 	
-	Global.load_data()
+#signals
+#func _on_createItem_pressed() -> void:
+#	var item_selected = tree_task.get_selected()
+#	var new_item = tree_task.create_item(item_selected)
+#	new_item.set_text(0, 'item creado')
+
+func _process(delta: float) -> void:
+	if tree_task.get_root() != null:
+		var child = tree_task.get_root().get_children()
+		while child != null:
+				# put code here
+			print(child)
+			child = child.get_next()
 	
-	var project = tree_task.create_item()
-	project.set_text(0, Global.data["nodes"][0]["name_task"])
+#functions
+func add_new_items( n:String ) -> void:
 	
-	var list : Array = []
-	
-	for n in Global.data["nodes"]:
-		if n["name_task"] != Global.data["nodes"][0]["name_task"] and n["parent"] != Global.data["nodes"][0]["name_task"]:
-			
-			var child = tree_task.create_item(project)
-			child.set_text(0, n["name_task"])
-			list.append(child)
-#		else:
-#			for i in list:
-#				if n["parent"] == i.get_text(0):
-#					var child = tree_task.create_item(i)
-#					list.append(child)
-	
-	
-	print(list[0].get_text(0))
-#	var root = tree_task.create_item()
-#	root.set_text(0, "proyecto")
-#	var child1 = tree_task.create_item(root)
-#	child1.set_text(0,"hijo uno")
-#	var child2 = tree_task.create_item(root)
-#	child2.set_text(0,"hijo dos")
-#	var subchild1 = tree_task.create_item(child1)
-#	subchild1.set_text(0, "Subchild1")
+	if tree_task.get_selected():
+		var item = tree_task.create_item(tree_task.get_selected())
+		item.set_text(0, n)
+	else:
+		var item = tree_task.create_item()
+		item.set_text(0, n)
+		items.append(item)
