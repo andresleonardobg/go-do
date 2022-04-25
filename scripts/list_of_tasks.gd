@@ -4,8 +4,6 @@ onready var tree_task = $PanelContainer/Tree
 
 var items : Array
 
-signal know_item(item)
-
 func _ready() -> void:
 	pass
 	
@@ -15,21 +13,38 @@ func _ready() -> void:
 #	var new_item = tree_task.create_item(item_selected)
 #	new_item.set_text(0, 'item creado')
 
-func _process(delta: float) -> void:
-	if tree_task.get_root() != null:
-		var child = tree_task.get_root().get_children()
-		while child != null:
-				# put code here
-			print(child)
-			child = child.get_next()
+func _process(_delta: float) -> void:
+	pass
 	
 #functions
-func add_new_items( n:String ) -> void:
+func add_new_items( node_parent, name_item:String ) -> void:
 	
-	if tree_task.get_selected():
-		var item = tree_task.create_item(tree_task.get_selected())
-		item.set_text(0, n)
-	else:
+	if node_parent == null:
 		var item = tree_task.create_item()
-		item.set_text(0, n)
+		item.set_text(0, name_item)
 		items.append(item)
+	else:
+		for item in items:
+			if item.get_text(0) == node_parent:
+				var new_item = tree_task.create_item(item)
+				new_item.set_text( 0, name_item )
+				items.append(new_item)
+	
+
+
+func select_item(t: String) -> void:
+	if tree_task.get_root() != null:
+		var child = tree_task.get_root().get_children()
+		while child != null: 
+			
+			if child.get_text(0) == t:
+				child.free()
+			else:
+				child = child.get_next()
+			
+
+func add_new_item(node_parent, name_new_item):
+	for item in items:
+		if item.get_text() == node_parent.name_task:
+			var i = tree_task.create_item(item)
+			i.set_text(name_new_item)

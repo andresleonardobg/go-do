@@ -14,6 +14,8 @@ onready var panel_graph = $HSplitContainer/PanelContainer/GraphEdit
 #load node
 const node_task = preload("res://scenes/nodoTask.tscn")
 
+var node_selected
+
 var center_window = OS.window_size / 2
 
 func _ready() -> void:
@@ -30,6 +32,7 @@ func _process(_delta: float) -> void:
 func connection_nodes_right() -> void:
 	
 	Global.add_new_node(position_new_node, text_task.text, panel_graph, true, true, node_parent)
+	$HSplitContainer/list_of_tasks.add_new_items(node_selected.name_task, text_task.text )
 	var name_node = get_tree().get_nodes_in_group("nodetask")
 	panel_graph.connect_node(node_parent, 0, name_node[-1].name, 0)
 
@@ -75,7 +78,7 @@ func _on_load_pressed() -> void:
 	display_data()
 
 func _on_Accept_pressed() -> void:
-	$HSplitContainer/list_of_tasks.add_new_items( text_task.text )
+	
 	if panel_graph.get_child_count() == 2:
 		Global.add_new_node(
 			center_window - Vector2(100, 40),
@@ -85,6 +88,7 @@ func _on_Accept_pressed() -> void:
 			true,
 			node_parent
 			)
+		$HSplitContainer/list_of_tasks.add_new_items(null, text_task.text )
 	else:
 		connection_nodes_right()
 	
@@ -92,7 +96,8 @@ func _on_Accept_pressed() -> void:
 	window_new_task.visible = false
 
 func _on_GraphEdit_node_selected(node: Node) -> void:
-	print(node)
+	if node:
+		node_selected = node
 
 
 func _on_GraphEdit_connection_to_empty(from: String, _from_slot: int, release_position: Vector2) -> void:
