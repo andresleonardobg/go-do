@@ -8,8 +8,12 @@ onready var text_task = $new_task/VBoxContainer/TextEdit
 var position_new_node
 var node_parent = ""
 
-#panel graph edit
+#nodes containers
 onready var panel_graph = $HSplitContainer/PanelContainer/GraphEdit
+onready var list_tasks = $HSplitContainer/list_of_tasks
+
+#buttons
+onready var new_proyect = $menu/new
 
 #load node
 const node_task = preload("res://scenes/nodoTask.tscn")
@@ -23,16 +27,18 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if panel_graph.get_child_count() < 3:
-		$menu/new.disabled = false
+		new_proyect.disabled = false
 	else:
-		$menu/new.disabled = true
+		new_proyect.disabled = true
+	
+	print(panel_graph.get_viewport().get_mouse_position())
 
 
 #functions
 func connection_nodes_right() -> void:
 	
 	Global.add_new_node(position_new_node, text_task.text, panel_graph, true, true, node_parent)
-	$HSplitContainer/list_of_tasks.add_new_items(node_selected.name_task, text_task.text )
+	list_tasks.add_new_items(node_selected.name_task, text_task.text )
 	var name_node = get_tree().get_nodes_in_group("nodetask")
 	panel_graph.connect_node(node_parent, 0, name_node[-1].name, 0)
 
@@ -81,14 +87,15 @@ func _on_Accept_pressed() -> void:
 	
 	if panel_graph.get_child_count() == 2:
 		Global.add_new_node(
-			center_window - Vector2(100, 40),
+			Vector2(50, 200),
 			text_task.text,
 			panel_graph,
 			true,
 			true,
 			node_parent
 			)
-		$HSplitContainer/list_of_tasks.add_new_items(null, text_task.text )
+
+		list_tasks.add_new_items(null, text_task.text )
 	else:
 		connection_nodes_right()
 	
@@ -102,5 +109,5 @@ func _on_GraphEdit_node_selected(node: Node) -> void:
 
 func _on_GraphEdit_connection_to_empty(from: String, _from_slot: int, release_position: Vector2) -> void:
 	window_new_task.popup()
-	position_new_node = release_position
+	position_new_node = panel_graph.scroll_offset + get_viewport().get_mouse_position()
 	node_parent = from

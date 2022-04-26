@@ -27,6 +27,8 @@ func add_new_items( node_parent, name_item:String ) -> void:
 		for item in items:
 			if item.get_text(0) == node_parent:
 				var new_item = tree_task.create_item(item)
+				new_item.set_cell_mode(0, 1)
+				new_item.set_editable(0, true)
 				new_item.set_text( 0, name_item )
 				items.append(new_item)
 	

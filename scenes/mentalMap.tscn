@@ -6,9 +6,12 @@
 [node name="mentalMap" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 15
-size_flags_vertical = 15
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="menu" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -54,24 +57,23 @@ margin_left = 7.0
 margin_top = 32.0
 margin_right = 1017.0
 margin_bottom = 593.0
-size_flags_horizontal = 15
-size_flags_vertical = 15
+size_flags_horizontal = 3
+size_flags_vertical = 3
 split_offset = 300
 
 [node name="PanelContainer" type="PanelContainer" parent="HSplitContainer"]
 margin_right = 799.0
 margin_bottom = 561.0
-size_flags_horizontal = 15
-size_flags_vertical = 15
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="GraphEdit" type="GraphEdit" parent="HSplitContainer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 792.0
 margin_bottom = 554.0
-size_flags_horizontal = 15
-size_flags_vertical = 15
-scroll_offset = Vector2( -475, -39 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 use_snap = false
 
 [node name="list_of_tasks" parent="HSplitContainer" instance=ExtResource( 1 )]
@@ -80,8 +82,8 @@ anchor_bottom = 0.0
 margin_left = 811.0
 margin_right = 1010.0
 margin_bottom = 561.0
-size_flags_horizontal = 15
-size_flags_vertical = 15
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="new_task" type="WindowDialog" parent="."]
 margin_left = 345.0
