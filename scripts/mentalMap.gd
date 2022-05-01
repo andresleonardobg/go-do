@@ -109,5 +109,5 @@ func _on_GraphEdit_node_selected(node: Node) -> void:
 
 func _on_GraphEdit_connection_to_empty(from: String, _from_slot: int, release_position: Vector2) -> void:
 	window_new_task.popup()
-	position_new_node = panel_graph.scroll_offset + get_viewport().get_mouse_position()
+	position_new_node = release_position + panel_graph.scroll_offset 
 	node_parent = from
