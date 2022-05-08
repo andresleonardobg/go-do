@@ -18,7 +18,7 @@ func add_new_node(pos:Vector2, name_n:String, parent, enable_slot_left:bool, ena
 	
 	var node_child = node.instance()
 	
-	node_child.name_task = name_n
+	node_child.name = name_n
 	node_child.parent_node = parent_node
 	node_child.set_slot_enabled_left(0, enable_slot_left)
 	node_child.set_slot_enabled_right(0, enable_slot_right)

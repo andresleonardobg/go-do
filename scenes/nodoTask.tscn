@@ -60,11 +60,12 @@ alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 margin_right = 168.0
-margin_bottom = 14.0
+margin_bottom = 20.0
 size_flags_horizontal = 7
 size_flags_vertical = 6
 text = "Titulo del nodo"
 align = 1
+valign = 1
 autowrap = true
 uppercase = true
 

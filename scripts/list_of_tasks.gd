@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 #functions
 func add_new_items( node_parent, name_item:String ) -> void:
 	
-	if node_parent == null:
+	if node_parent == "":
 		var item = tree_task.create_item()
 		item.set_text(0, name_item)
 		items.append(item)
@@ -32,7 +32,6 @@ func add_new_items( node_parent, name_item:String ) -> void:
 				new_item.set_text( 0, name_item )
 				items.append(new_item)
 	
-
 
 func select_item(t: String) -> void:
 	if tree_task.get_root() != null:

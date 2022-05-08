@@ -28,14 +28,12 @@ text = "Nuevo proyecto"
 margin_left = 117.0
 margin_right = 168.0
 margin_bottom = 25.0
-disabled = true
 text = "Cargar"
 
 [node name="save" type="Button" parent="menu"]
 margin_left = 172.0
 margin_right = 234.0
 margin_bottom = 25.0
-disabled = true
 text = "Guardar"
 
 [node name="save as" type="Button" parent="menu"]
@@ -74,7 +72,7 @@ margin_right = 792.0
 margin_bottom = 554.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-use_snap = false
+show_zoom_label = true
 
 [node name="list_of_tasks" parent="HSplitContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
