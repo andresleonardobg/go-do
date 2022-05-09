@@ -9,77 +9,75 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="menu" type="HBoxContainer" parent="."]
 anchor_right = 1.0
-margin_bottom = 25.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 5
 
 [node name="new" type="Button" parent="menu"]
 margin_right = 113.0
-margin_bottom = 25.0
+margin_bottom = 20.0
 text = "Nuevo proyecto"
 
 [node name="load" type="Button" parent="menu"]
-margin_left = 117.0
-margin_right = 168.0
-margin_bottom = 25.0
+margin_left = 118.0
+margin_right = 169.0
+margin_bottom = 20.0
 text = "Cargar"
 
 [node name="save" type="Button" parent="menu"]
-margin_left = 172.0
-margin_right = 234.0
-margin_bottom = 25.0
+margin_left = 174.0
+margin_right = 236.0
+margin_bottom = 20.0
 text = "Guardar"
 
 [node name="save as" type="Button" parent="menu"]
-margin_left = 238.0
-margin_right = 340.0
-margin_bottom = 25.0
+margin_left = 241.0
+margin_right = 343.0
+margin_bottom = 20.0
 disabled = true
 text = "Guardar como"
 
 [node name="reset" type="Button" parent="menu"]
-margin_left = 344.0
-margin_right = 441.0
-margin_bottom = 25.0
+margin_left = 348.0
+margin_right = 445.0
+margin_bottom = 20.0
 disabled = true
 text = "Eliminar todo"
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
-margin_left = 7.0
-margin_top = 32.0
-margin_right = 1017.0
-margin_bottom = 593.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 split_offset = 300
 
 [node name="PanelContainer" type="PanelContainer" parent="HSplitContainer"]
-margin_right = 799.0
-margin_bottom = 561.0
+margin_right = 806.0
+margin_bottom = 579.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="GraphEdit" type="GraphEdit" parent="HSplitContainer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 792.0
-margin_bottom = 554.0
+margin_right = 799.0
+margin_bottom = 572.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+scroll_offset = Vector2( 0, -5 )
 show_zoom_label = true
 
 [node name="list_of_tasks" parent="HSplitContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 811.0
-margin_right = 1010.0
-margin_bottom = 561.0
+margin_left = 818.0
+margin_right = 1024.0
+margin_bottom = 579.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -111,7 +109,7 @@ margin_right = 280.0
 margin_bottom = 46.0
 size_flags_horizontal = 7
 size_flags_vertical = 7
-caret_block_mode = true
+shortcut_keys_enabled = false
 caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": false

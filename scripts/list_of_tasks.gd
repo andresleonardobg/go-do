@@ -13,9 +13,6 @@ func _ready() -> void:
 #	var new_item = tree_task.create_item(item_selected)
 #	new_item.set_text(0, 'item creado')
 
-func _process(_delta: float) -> void:
-	pass
-	
 #functions
 func add_new_items( node_parent, name_item:String ) -> void:
 	
