@@ -3,6 +3,7 @@ extends Control
 #window new task
 onready var window_new_task = $new_task
 onready var text_task = $new_task/VBoxContainer/TextEdit
+onready var file_window = $FileDialog
 
 #nodes containers
 onready var panel_graph = $HSplitContainer/PanelContainer/GraphEdit
@@ -21,8 +22,6 @@ var node_parent = ""
 #load node
 const node_task = preload("res://scenes/nodoTask.tscn")
 
-var center_window = OS.window_size / 2
-
 func _process(_delta: float) -> void:
 	if panel_graph.get_child_count() < 3:
 		new_proyect.disabled = false
@@ -38,8 +37,8 @@ func _input(_event: InputEvent) -> void:
 #functions
 func connection_nodes_right() -> void:
 	
-	Global.add_new_node(position_new_node, text_task.text, panel_graph, true, true, node_parent.name)
-	list_tasks.add_new_items(node_parent.name, text_task.text )
+	Global.add_new_node(position_new_node, text_task.text, panel_graph, true, true, node_parent)
+	list_tasks.add_new_items(node_parent, text_task.text )
 	var name_node = get_tree().get_nodes_in_group("nodetask")
 	panel_graph.connect_node(connect_to, 0, name_node[-1].name, 0)
 
@@ -88,9 +87,8 @@ func create_new_nodeTask() -> void:
 
 #signals
 func _on_new_pressed() -> void:
-	window_new_task.popup()
+	window_new_task.popup_centered()
 	get_node("new_task/VBoxContainer/TextEdit").grab_focus()
-	window_new_task.rect_position = center_window - Vector2(150, 40)
 
 
 func _on_save_pressed() -> void:
@@ -106,9 +104,10 @@ func _on_save_pressed() -> void:
 
 
 func _on_load_pressed() -> void:
-	
-	Global.load_data()
-	display_data()
+	file_window.mode = FileDialog.MODE_OPEN_FILE
+	file_window.popup_centered()
+#	Global.load_data()
+#	display_data()
 
 
 func _on_Accept_pressed() -> void:
@@ -116,13 +115,20 @@ func _on_Accept_pressed() -> void:
 	create_new_nodeTask()
 
 
-func _on_GraphEdit_node_selected(node: Node) -> void:
-	if node:
-		node_parent = node
-
-
 func _on_GraphEdit_connection_to_empty(from: String, _from_slot: int, _release_position: Vector2) -> void:
-	window_new_task.popup()
+	window_new_task.popup_centered()
+	node_parent = from
 	get_node("new_task/VBoxContainer/TextEdit").grab_focus()
 	position_new_node = panel_graph.get_local_mouse_position() + panel_graph.scroll_offset
 	connect_to = from
+
+
+func _on_save_as_pressed() -> void:
+	file_window.mode = FileDialog.MODE_SAVE_FILE
+	file_window.popup_centered()
+
+
+func _on_screenshot_pressed() -> void:
+	var img = panel_graph.get_viewport().get_texture().get_data()
+	img.flip_y()
+	img.save_png("mindmap.png")

@@ -38,7 +38,6 @@ text = "Guardar"
 margin_left = 241.0
 margin_right = 343.0
 margin_bottom = 20.0
-disabled = true
 text = "Guardar como"
 
 [node name="reset" type="Button" parent="menu"]
@@ -47,6 +46,12 @@ margin_right = 445.0
 margin_bottom = 20.0
 disabled = true
 text = "Eliminar todo"
+
+[node name="screenshot" type="Button" parent="menu"]
+margin_left = 450.0
+margin_right = 568.0
+margin_bottom = 20.0
+text = "captura de mapa"
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
 anchor_right = 1.0
@@ -69,8 +74,8 @@ margin_right = 799.0
 margin_bottom = 572.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-scroll_offset = Vector2( 0, -5 )
-show_zoom_label = true
+zoom_min = 1.0
+zoom_max = 1.0
 
 [node name="list_of_tasks" parent="HSplitContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -121,11 +126,22 @@ margin_right = 280.0
 margin_bottom = 70.0
 text = "Aceptar"
 
+[node name="FileDialog" type="FileDialog" parent="."]
+margin_right = 481.0
+margin_bottom = 282.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
+resizable = true
+access = 2
+show_hidden_files = true
+current_dir = "/Users/USUARIO/Documents/go-do"
+current_path = "/Users/USUARIO/Documents/go-do/"
+
 [connection signal="pressed" from="menu/new" to="." method="_on_new_pressed"]
 [connection signal="pressed" from="menu/load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="menu/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="menu/save as" to="." method="_on_save_as_pressed"]
+[connection signal="pressed" from="menu/screenshot" to="." method="_on_screenshot_pressed"]
 [connection signal="connection_from_empty" from="HSplitContainer/PanelContainer/GraphEdit" to="." method="_on_GraphEdit_connection_from_empty"]
-[connection signal="connection_request" from="HSplitContainer/PanelContainer/GraphEdit" to="." method="_on_GraphEdit_connection_request"]
 [connection signal="connection_to_empty" from="HSplitContainer/PanelContainer/GraphEdit" to="." method="_on_GraphEdit_connection_to_empty"]
-[connection signal="node_selected" from="HSplitContainer/PanelContainer/GraphEdit" to="." method="_on_GraphEdit_node_selected"]
 [connection signal="pressed" from="new_task/VBoxContainer/Accept" to="." method="_on_Accept_pressed"]

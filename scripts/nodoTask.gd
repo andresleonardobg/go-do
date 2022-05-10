@@ -21,3 +21,8 @@ func send_data() -> void:
 		"right":get("slot/0/right_enabled"),
 		"parent":parent_node,
 		})
+
+
+func _on_nodoTask_slot_updated(idx: int) -> void:
+	pass
+	#self.selected = true
