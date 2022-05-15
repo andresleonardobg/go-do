@@ -1,4 +1,4 @@
 # go-do
 <p>application and plugin to create a to-do list through mind maps</p>
 
-![](readme_assets%5Cexample.gif)
+![Alt Text](https://raw.githubusercontent.com/andresleonardobg/go-do/main/readme_assets/example.gif)
