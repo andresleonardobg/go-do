@@ -22,6 +22,9 @@ var node_parent = ""
 #load node
 const node_task = preload("res://scenes/nodoTask.tscn")
 
+func _ready() -> void:
+	file_window.add_filter("*.json ; JSON files")
+
 func _process(_delta: float) -> void:
 	if panel_graph.get_child_count() < 3:
 		new_proyect.disabled = false
@@ -85,6 +88,15 @@ func create_new_nodeTask() -> void:
 	window_new_task.visible = false
 
 
+func send_data_to_save() -> void:
+	Global.data["conections"] = panel_graph.get_connection_list()
+	
+	var nodetasks = get_tree().get_nodes_in_group("nodetask")
+	
+	for n in nodetasks:
+		n.send_data()
+
+
 #signals
 func _on_new_pressed() -> void:
 	window_new_task.popup_centered()
@@ -92,32 +104,26 @@ func _on_new_pressed() -> void:
 
 
 func _on_save_pressed() -> void:
-	#save connections nodes
-	Global.data["conections"] = panel_graph.get_connection_list()
-	
-	var nodetasks = get_tree().get_nodes_in_group("nodetask")
-	
-	for n in nodetasks:
-		n.send_data()
-	
-	Global.save_data()
+	if Global.current_path_data != "":
+		send_data_to_save()
+		print("guardado rapido")
+	else:
+		file_window.mode = FileDialog.MODE_SAVE_FILE
+		file_window.popup_centered()
 
 
 func _on_load_pressed() -> void:
 	file_window.mode = FileDialog.MODE_OPEN_FILE
 	file_window.popup_centered()
-#	Global.load_data()
-#	display_data()
 
 
 func _on_Accept_pressed() -> void:
-	
 	create_new_nodeTask()
 
 
 func _on_GraphEdit_connection_to_empty(from: String, _from_slot: int, _release_position: Vector2) -> void:
 	window_new_task.popup_centered()
-	node_parent = from
+	node_parent = panel_graph.get_node(from).name_node
 	get_node("new_task/VBoxContainer/TextEdit").grab_focus()
 	position_new_node = panel_graph.get_local_mouse_position() + panel_graph.scroll_offset
 	connect_to = from
@@ -132,3 +138,17 @@ func _on_screenshot_pressed() -> void:
 	var img = panel_graph.get_viewport().get_texture().get_data()
 	img.flip_y()
 	img.save_png("mindmap.png")
+
+
+func _on_FileDialog_confirmed() -> void:
+	if file_window.mode == 4:
+		Global.data = {
+		"nodes":[]
+		}
+		send_data_to_save()
+		Global.save_data(file_window.current_file)
+		print("guardar como")
+	elif file_window.mode == 0:
+		Global.load_data(file_window.current_file)
+		display_data()
+		print("data cargada")

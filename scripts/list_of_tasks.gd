@@ -4,14 +4,7 @@ onready var tree_task = $PanelContainer/Tree
 
 var items : Array
 
-func _ready() -> void:
-	pass
-	
 #signals
-#func _on_createItem_pressed() -> void:
-#	var item_selected = tree_task.get_selected()
-#	var new_item = tree_task.create_item(item_selected)
-#	new_item.set_text(0, 'item creado')
 
 #functions
 func add_new_items( node_parent, name_item:String ) -> void:
@@ -23,6 +16,8 @@ func add_new_items( node_parent, name_item:String ) -> void:
 	else:
 		for item in items:
 			if item.get_text(0) == node_parent:
+				if item.get_parent():
+					print(item.get_parent().get_text(0))
 				var new_item = tree_task.create_item(item)
 				new_item.set_cell_mode(0, 1)
 				new_item.set_editable(0, true)
