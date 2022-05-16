@@ -123,7 +123,7 @@ func _on_Accept_pressed() -> void:
 
 func _on_GraphEdit_connection_to_empty(from: String, _from_slot: int, _release_position: Vector2) -> void:
 	window_new_task.popup_centered()
-	node_parent = panel_graph.get_node(from).name_node
+	node_parent = panel_graph.get_node(from).name
 	get_node("new_task/VBoxContainer/TextEdit").grab_focus()
 	position_new_node = panel_graph.get_local_mouse_position() + panel_graph.scroll_offset
 	connect_to = from
