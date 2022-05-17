@@ -40,9 +40,10 @@ func _input(_event: InputEvent) -> void:
 #functions
 func connection_nodes_right() -> void:
 	
-	Global.add_new_node(position_new_node, text_task.text, panel_graph, true, true, node_parent)
-	list_tasks.add_new_items(node_parent, text_task.text )
+	Global.add_new_node(position_new_node, text_task.text, panel_graph, true, true, node_parent.name)
+	list_tasks.add_new_items(node_parent, text_task.text)
 	var name_node = get_tree().get_nodes_in_group("nodetask")
+	node_parent.childs.append(name_node[-1])
 	panel_graph.connect_node(connect_to, 0, name_node[-1].name, 0)
 
 
@@ -123,7 +124,7 @@ func _on_Accept_pressed() -> void:
 
 func _on_GraphEdit_connection_to_empty(from: String, _from_slot: int, _release_position: Vector2) -> void:
 	window_new_task.popup_centered()
-	node_parent = panel_graph.get_node(from).name
+	node_parent = panel_graph.get_node(from)
 	get_node("new_task/VBoxContainer/TextEdit").grab_focus()
 	position_new_node = panel_graph.get_local_mouse_position() + panel_graph.scroll_offset
 	connect_to = from

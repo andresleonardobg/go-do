@@ -16,6 +16,7 @@ func add_new_items( node_parent : String, name_item : String ) -> void:
 	
 	if node_parent == "":
 		var item = tree_task.create_item()
+		item.add_to_group(name_item)
 		item.set_text(0, name_item)
 		items.append(item)
 	else:
@@ -24,7 +25,6 @@ func add_new_items( node_parent : String, name_item : String ) -> void:
 				if item.get_text(0) == node_parent:
 					create_new_item(item, name_item)
 			else:
-				print(tree[-2])
 				if item.get_text(0) == tree[-1] and item.get_parent().get_text(0) == tree[-2]:
 					create_new_item(item, name_item)
 	
@@ -32,6 +32,7 @@ func add_new_items( node_parent : String, name_item : String ) -> void:
 
 func create_new_item(item, name_item) -> void:
 	var new_item = tree_task.create_item(item)
+	new_item.add_to_group(name_item)
 	new_item.set_cell_mode(0, 1)
 	new_item.set_editable(0, true)
 	new_item.set_text( 0, name_item )
