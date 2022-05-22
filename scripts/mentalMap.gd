@@ -24,6 +24,11 @@ const node_task = preload("res://scenes/nodoTask.tscn")
 
 func _ready() -> void:
 	file_window.add_filter("*.json ; JSON files")
+	
+	#load last file edited
+	if Global.last_file != "":
+		Global.load_data(Global.last_file)
+		display_data()
 
 func _process(_delta: float) -> void:
 	if panel_graph.get_child_count() < 3:
@@ -40,10 +45,9 @@ func _input(_event: InputEvent) -> void:
 #functions
 func connection_nodes_right() -> void:
 	
-	Global.add_new_node(position_new_node, text_task.text, panel_graph, true, true, node_parent.name)
+	Global.add_new_node(position_new_node, text_task.text, panel_graph, true, true, node_parent)
 	list_tasks.add_new_items(node_parent, text_task.text)
 	var name_node = get_tree().get_nodes_in_group("nodetask")
-	node_parent.childs.append(name_node[-1])
 	panel_graph.connect_node(connect_to, 0, name_node[-1].name, 0)
 
 
@@ -124,7 +128,7 @@ func _on_Accept_pressed() -> void:
 
 func _on_GraphEdit_connection_to_empty(from: String, _from_slot: int, _release_position: Vector2) -> void:
 	window_new_task.popup_centered()
-	node_parent = panel_graph.get_node(from)
+	node_parent = panel_graph.get_node(from).name
 	get_node("new_task/VBoxContainer/TextEdit").grab_focus()
 	position_new_node = panel_graph.get_local_mouse_position() + panel_graph.scroll_offset
 	connect_to = from
@@ -150,6 +154,7 @@ func _on_FileDialog_confirmed() -> void:
 		Global.save_data(file_window.current_file)
 		print("guardar como")
 	elif file_window.mode == 0:
+		Global.save_data_log(file_window.current_file)
 		Global.load_data(file_window.current_file)
 		display_data()
 		print("data cargada")

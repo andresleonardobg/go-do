@@ -1,2 +1,4 @@
 /resources/
+/addons/godot-git-plugin/
 test.json
+files_loaded.log
