@@ -11,6 +11,8 @@ var data_log = "res://files_loaded.log"
 var last_file = ""
 var current_path_data : String
 
+var delete_task = [false, ""]
+
 var node = preload("res://scenes/nodoTask.tscn")
 
 #default functions

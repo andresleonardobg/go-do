@@ -3,6 +3,7 @@ extends GraphNode
 onready var label = $VBoxContainer/HBoxContainer/Label
 onready var warning = get_node("ConfirmationDialog")
 
+
 var parent_node : String 
 var name_node : String
 var parents : Array
@@ -23,6 +24,10 @@ func delete_node() -> void:
 	get_parent().disconnect_node(parent_node, 0, name, 0)
 	queue_free()
 
+func delete_node_with_item() -> void:
+	get_parent().disconnect_node(parent_node, 0, name, 0)
+	queue_free()
+	Global.delete_task = [true, name]
 
 #signals
 func _on_edit_pressed() -> void:
@@ -43,11 +48,12 @@ func send_data() -> void:
 
 func _on_nodoTask_close_request() -> void:
 	if get_tree().get_nodes_in_group(name_node).size() == 1:
-		delete_node()
+		delete_node_with_item()
 	else:
 		warning.popup_centered()
 
 
 func _on_ConfirmationDialog_confirmed() -> void:
+	delete_node_with_item()
 	get_tree().call_group(name_node, "delete_node")
 	print("nodos hijos eliminados")

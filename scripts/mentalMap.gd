@@ -23,6 +23,7 @@ var node_parent = ""
 const node_task = preload("res://scenes/nodoTask.tscn")
 
 func _ready() -> void:
+	
 	file_window.add_filter("*.json ; JSON files")
 	
 	#load last file edited
