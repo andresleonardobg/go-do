@@ -40,11 +40,10 @@ margin_right = 343.0
 margin_bottom = 20.0
 text = "Guardar como"
 
-[node name="reset" type="Button" parent="menu"]
+[node name="delete all nodes" type="Button" parent="menu"]
 margin_left = 348.0
 margin_right = 445.0
 margin_bottom = 20.0
-disabled = true
 text = "Eliminar todo"
 
 [node name="screenshot" type="Button" parent="menu"]
@@ -141,6 +140,7 @@ current_path = "/Users/USUARIO/Documents/go-do/"
 [connection signal="pressed" from="menu/load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="menu/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="menu/save as" to="." method="_on_save_as_pressed"]
+[connection signal="pressed" from="menu/delete all nodes" to="." method="_on_delete_all_nodes_pressed"]
 [connection signal="pressed" from="menu/screenshot" to="." method="_on_screenshot_pressed"]
 [connection signal="connection_to_empty" from="HSplitContainer/PanelContainer/GraphEdit" to="." method="_on_GraphEdit_connection_to_empty"]
 [connection signal="pressed" from="new_task/VBoxContainer/Accept" to="." method="_on_Accept_pressed"]

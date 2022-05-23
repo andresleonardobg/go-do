@@ -48,7 +48,7 @@ func connection_nodes_right() -> void:
 	
 	Global.add_new_node(position_new_node, text_task.text, panel_graph, true, true, node_parent)
 	list_tasks.add_new_items(node_parent, text_task.text)
-	var name_node = get_tree().get_nodes_in_group("nodetask")
+	var name_node = get_tree().get_nodes_in_group("all_nodes_task")
 	panel_graph.connect_node(connect_to, 0, name_node[-1].name, 0)
 
 
@@ -95,9 +95,13 @@ func create_new_nodeTask() -> void:
 
 
 func send_data_to_save() -> void:
+	Global.data = {
+		"nodes":[]
+		}
+	
 	Global.data["conections"] = panel_graph.get_connection_list()
 	
-	var nodetasks = get_tree().get_nodes_in_group("nodetask")
+	var nodetasks = get_tree().get_nodes_in_group("all_nodes_task")
 	
 	for n in nodetasks:
 		n.send_data()
@@ -110,7 +114,7 @@ func _on_new_pressed() -> void:
 
 
 func _on_save_pressed() -> void:
-	if Global.current_path_data != "":
+	if Global.last_file != "":
 		send_data_to_save()
 		print("guardado rapido")
 	else:
@@ -148,9 +152,6 @@ func _on_screenshot_pressed() -> void:
 
 func _on_FileDialog_confirmed() -> void:
 	if file_window.mode == 4:
-		Global.data = {
-		"nodes":[]
-		}
 		send_data_to_save()
 		Global.save_data(file_window.current_file)
 		print("guardar como")
@@ -159,3 +160,10 @@ func _on_FileDialog_confirmed() -> void:
 		Global.load_data(file_window.current_file)
 		display_data()
 		print("data cargada")
+
+
+func _on_delete_all_nodes_pressed() -> void:
+	var nodes_task = get_tree().get_nodes_in_group("all_nodes_task")
+	list_tasks.delete_all_items()
+	for node in nodes_task:
+		node.delete_node()

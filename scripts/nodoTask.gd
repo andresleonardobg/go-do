@@ -9,6 +9,7 @@ var name_node : String
 var parents : Array
 
 func _ready() -> void:
+	add_to_group("all_nodes_task")
 	add_to_group(name_node)
 	
 	parents = parent_node.split("-", true)

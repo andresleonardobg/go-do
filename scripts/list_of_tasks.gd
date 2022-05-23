@@ -7,7 +7,7 @@ var items : Array
 var tree
 
 #default functions
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Global.delete_task[0]:
 		delete_items(Global.delete_task[1])
 
@@ -63,6 +63,5 @@ func delete_items(node_task : String ) -> void:
 	
 	Global.delete_task = [false, ""]
 
-func has_parent(item):
-	
-	pass
+func delete_all_items():
+	tree_task.clear()
