@@ -50,6 +50,7 @@ func send_data() -> void:
 func _on_nodoTask_close_request() -> void:
 	if get_tree().get_nodes_in_group(name_node).size() == 1:
 		delete_node_with_item()
+		print("nodo y item eliminado")
 	else:
 		warning.popup_centered()
 

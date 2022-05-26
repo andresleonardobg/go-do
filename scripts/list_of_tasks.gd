@@ -43,7 +43,6 @@ func create_new_item(item_parent, name_item) -> void:
 
 func delete_items(node_task : String ) -> void:
 	var content = node_task.split("-", true)
-	print(content)
 	
 	if content.size() > 1:
 		for item in items:
@@ -57,13 +56,18 @@ func delete_items(node_task : String ) -> void:
 					if item.get_text(0) == content[-1] and parent_item.get_text(0) == content[-2] and grandparent_item.get_text(0) == content[-3]:
 						print("tenia abuelo " + item.get_text(0))
 						parent_item.remove_child(item)
+						item.free()
+						items.erase(item)
 				else:
 					if item.get_text(0) == content[-1] and parent_item.get_text(0) == content[-2]:
 						print("solo tenia padre "  + item.get_text(0))
 						parent_item.remove_child(item)
+						item.free()
+						items.erase(item)
 	
 	Global.delete_task = [false, ""]
 	
 
 func delete_all_items():
 	tree_task.clear()
+	items = []
