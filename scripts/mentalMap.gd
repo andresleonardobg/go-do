@@ -116,6 +116,7 @@ func _on_new_pressed() -> void:
 func _on_save_pressed() -> void:
 	if Global.last_file != "":
 		send_data_to_save()
+		Global.save_data(Global.last_file)
 		print("guardado rapido")
 	else:
 		file_window.mode = FileDialog.MODE_SAVE_FILE

@@ -45,7 +45,7 @@ func add_new_node(pos:Vector2, name_n:String, graphEdit, enable_slot_left:bool, 
 
 func save_data(path_data : String) -> void:
 	var file = File.new()
-	file.open(path_data + ".json", 2)
+	file.open(path_data, 2)
 	file.store_line(to_json(data))
 	file.close()
 

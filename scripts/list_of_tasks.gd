@@ -19,6 +19,7 @@ func add_new_items( node_parent : String, name_item : String ) -> void:
 		tree = node_parent.split("-", true)
 	
 	if node_parent == "":
+
 		var item = tree_task.create_item()
 		item.set_text(0, name_item)
 		items.append(item)
@@ -62,6 +63,7 @@ func delete_items(node_task : String ) -> void:
 						parent_item.remove_child(item)
 	
 	Global.delete_task = [false, ""]
+	
 
 func delete_all_items():
 	tree_task.clear()
