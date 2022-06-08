@@ -31,7 +31,6 @@ func add_new_items( node_parent : String, name_item : String ) -> void:
 			else:
 				if item.get_text(0) == tree[-1] and item.get_parent().get_text(0) == tree[-2]:
 					create_new_item(item, name_item)
-	
 
 
 func create_new_item(item_parent, name_item) -> void:
@@ -42,31 +41,32 @@ func create_new_item(item_parent, name_item) -> void:
 	items.append(new_item)
 
 func delete_items(node_task : String ) -> void:
-	var content = node_task.split("-", true)
-	
-	if content.size() > 1:
-		for item in items:
-			if item.get_parent():
-				
-				var parent_item = item.get_parent()
-				var grandparent_item
-				
-				if parent_item.get_parent():
-					grandparent_item = parent_item.get_parent()
-					if item.get_text(0) == content[-1] and parent_item.get_text(0) == content[-2] and grandparent_item.get_text(0) == content[-3]:
-						print("tenia abuelo " + item.get_text(0))
-						parent_item.remove_child(item)
-						item.free()
-						items.erase(item)
-				else:
-					if item.get_text(0) == content[-1] and parent_item.get_text(0) == content[-2]:
-						print("solo tenia padre "  + item.get_text(0))
-						parent_item.remove_child(item)
-						item.free()
-						items.erase(item)
 	
 	Global.delete_task = [false, ""]
 	
+	var content = node_task.split("-", true)
+	print(content.size())
+	
+	for i in items:
+	
+		if content.size() == 2:
+			var item = content[-1]
+			var item_parent = content[-2]
+			
+			if i.get_text(0) == item and i.get_parent().get_text(0) == item_parent:
+				i.get_parent().remove_child(i)
+				items.erase(i)
+			
+		elif content.size() >= 3:
+			var item = content[-1]
+			var item_parent = content[-2]
+			var item_grandparent = content[-3]
+			
+			if i.get_text(0) == item and i.get_parent().get_text(0) == item_parent:
+				if i.get_parent().get_parent().get_text(0) == item_grandparent:
+					i.get_parent().remove_child(i)
+					items.erase(i)
+
 
 func delete_all_items():
 	tree_task.clear()
