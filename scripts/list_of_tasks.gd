@@ -1,10 +1,8 @@
 extends Control
 
 onready var tree_task = $PanelContainer/Tree
-
 var items : Array
 
-var tree
 
 #default functions
 func _physics_process(_delta: float) -> void:
@@ -15,14 +13,17 @@ func _physics_process(_delta: float) -> void:
 #functions
 func add_new_items( node_parent : String, name_item : String ) -> void:
 
+	var tree
+
 	if node_parent.length() > 0:
-		tree = node_parent.split("-", true)
+		tree = node_parent.split("_", true)
 	
 	if node_parent == "":
 
 		var item = tree_task.create_item()
 		item.set_text(0, name_item)
 		items.append(item)
+
 	else:
 		for item in items:
 			if tree.size() < 2:
@@ -44,8 +45,7 @@ func delete_items(node_task : String ) -> void:
 	
 	Global.delete_task = [false, ""]
 	
-	var content = node_task.split("-", true)
-	print(content.size())
+	var content = node_task.split("_", true)
 	
 	for i in items:
 	

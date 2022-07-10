@@ -61,7 +61,7 @@ size_flags_vertical = 3
 split_offset = 300
 
 [node name="PanelContainer" type="PanelContainer" parent="HSplitContainer"]
-margin_right = 806.0
+margin_right = 1024.0
 margin_bottom = 579.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -69,14 +69,16 @@ size_flags_vertical = 3
 [node name="GraphEdit" type="GraphEdit" parent="HSplitContainer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 799.0
+margin_right = 1017.0
 margin_bottom = 572.0
+mouse_default_cursor_shape = 16
 size_flags_horizontal = 3
 size_flags_vertical = 3
 zoom_min = 1.0
 zoom_max = 1.0
 
 [node name="list_of_tasks" parent="HSplitContainer" instance=ExtResource( 1 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 818.0

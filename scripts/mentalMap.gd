@@ -17,7 +17,7 @@ var connect_to
 
 #propieties new node
 var position_new_node
-var node_parent = ""
+var node_parent : Node
 
 #load node
 const node_task = preload("res://scenes/nodoTask.tscn")
@@ -27,9 +27,10 @@ func _ready() -> void:
 	file_window.add_filter("*.json ; JSON files")
 	
 	#load last file edited
-	if Global.last_file != "":
-		Global.load_data(Global.last_file)
-		display_data()
+	# if Global.last_file != "":
+	# 	Global.load_data(Global.last_file)
+	# 	display_data()
+
 
 func _process(_delta: float) -> void:
 	if panel_graph.get_child_count() < 3:
@@ -37,34 +38,19 @@ func _process(_delta: float) -> void:
 	else:
 		new_proyect.disabled = true
 
+
 func _input(_event: InputEvent) -> void:
 	if window_new_task.visible && text_task.text != "":
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("go-do_accept"):
 			create_new_nodeTask()
 
 
 #functions
-func connection_nodes_right() -> void:
-	
-	Global.add_new_node(position_new_node, text_task.text, panel_graph, true, true, node_parent)
-	list_tasks.add_new_items(node_parent, text_task.text)
-	var name_node = get_tree().get_nodes_in_group("all_nodes_task")
-	panel_graph.connect_node(connect_to, 0, name_node[-1].name, 0)
-
-
 func display_data() -> void:
 	
 	for i in Global.data["nodes"]:
 		
-		Global.add_new_node(
-			str2var(i["position"]),
-			i["name_task"],
-			panel_graph,
-			i["left"],
-			i["right"],
-			i["parent"]
-			)
-			
+		Global.add_new_node( str2var(i["position"]), i["name_task"], panel_graph, i["parent"])			
 		list_tasks.add_new_items(i["parent"], i["name_task"] )
 	
 	for c in Global.data["conections"]:
@@ -76,19 +62,15 @@ func display_data() -> void:
 
 
 func create_new_nodeTask() -> void:
-	if panel_graph.get_child_count() == 2:
-		Global.add_new_node(
-			Vector2(50, 200),
-			text_task.text,
-			panel_graph,
-			false,
-			true,
-			node_parent
-			)
 
+	if panel_graph.get_child_count() == 2:
+		Global.add_new_node(Vector2(50, 200), text_task.text, panel_graph, node_parent)
 		list_tasks.add_new_items("", text_task.text )
 	else:
-		connection_nodes_right()
+		Global.add_new_node(position_new_node, text_task.text, panel_graph, node_parent)
+		list_tasks.add_new_items(node_parent.name, text_task.text)
+		var name_node = get_tree().get_nodes_in_group("all_nodes_task")
+		panel_graph.connect_node(connect_to, 0, name_node[-1].name, 0)
 	
 	text_task.text = ""
 	window_new_task.visible = false
@@ -134,7 +116,7 @@ func _on_Accept_pressed() -> void:
 
 func _on_GraphEdit_connection_to_empty(from: String, _from_slot: int, _release_position: Vector2) -> void:
 	window_new_task.popup_centered()
-	node_parent = panel_graph.get_node(from).name
+	node_parent = panel_graph.get_node(from)
 	get_node("new_task/VBoxContainer/TextEdit").grab_focus()
 	position_new_node = panel_graph.get_local_mouse_position() + panel_graph.scroll_offset
 	connect_to = from
