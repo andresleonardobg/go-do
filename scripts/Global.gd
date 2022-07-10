@@ -22,24 +22,31 @@ func _ready() -> void:
 
 
 #functions created
-func add_new_node(pos:Vector2, name_n:String, graphEdit : Node, parent_node : Node):
+func add_new_node(pos : Vector2, name_n : String, graphEdit : Node, parent_node : Node):
 
+	var node_same_name : Node 
 	var node_child = node.instance()
 
 	if get_tree().get_nodes_in_group("all_nodes_task"):
-		for n in get_tree().get_nodes_in_group("all_nodes_task"):
-			if n.name == name_n:
-				node_child.name = name_n + "-1"
+		var all_nodes = get_tree().get_nodes_in_group("all_nodes_task")
+		all_nodes.invert()		
+		for n in all_nodes:
+			if n.name_node == name_n:
+				node_same_name = n
 				break
-			else:
-				node_child.name = name_n
-	
-	node_child.name_node = name_n
-	node_child.parent_node = parent_node
 
+	if node_same_name != null:
+		node_child.version  = node_same_name.version + 1
+		node_child.name = name_n + str( node_same_name.version + 1 )
+	elif node_same_name == null:
+		node_child.version = 0
+		node_child.name = name_n
+	
 	if parent_node == null:
 		node_child.set_slot_enabled_left(0, false)
-
+	
+	node_child.name_node = name_n 
+	node_child.parent_node = parent_node
 	graphEdit.add_child(node_child)
 	node_child.offset = pos - (node_child.rect_size / 2)
 

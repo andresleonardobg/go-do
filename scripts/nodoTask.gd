@@ -6,13 +6,12 @@ onready var warning = get_node("ConfirmationDialog")
 
 var parent_node : Node 
 var name_node : String
-var family : Array
 var version : int
 
+#deafault functions
 func _ready() -> void:
 
-	add_groups()
-	
+	add_groups()	
 	label.text = name_node
 
 #functions
@@ -22,10 +21,10 @@ func delete_node() -> void:
 	queue_free()
 
 func delete_node_with_item() -> void:
-	# get_parent().disconnect_node(parent_node.name, 0, name, 0)
-	# queue_free()
-	# Global.delete_task = [true, name]
-	pass
+	if parent_node:
+		get_parent().disconnect_node(parent_node.name, 0, name, 0)
+	queue_free()
+	Global.delete_task = [true, name]
 
 func add_groups():
 
@@ -33,9 +32,7 @@ func add_groups():
 	add_to_group(self.name)
 
 	if parent_node != null:
-
 		var parents_groups = parent_node.get_groups()
-
 		for group in parents_groups:
 			if group != "all_nodes_task":
 				add_to_group(group)
