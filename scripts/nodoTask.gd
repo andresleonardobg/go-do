@@ -4,7 +4,7 @@ onready var label = $VBoxContainer/HBoxContainer/Label
 onready var warning = get_node("ConfirmationDialog")
 
 
-var parent_node : Node 
+var parent_node : String 
 var name_node : String
 var version : int
 
@@ -17,12 +17,12 @@ func _ready() -> void:
 #functions
 func delete_node() -> void:
 	if parent_node:
-		get_parent().disconnect_node(parent_node.name, 0, name, 0)
+		get_parent().disconnect_node(parent_node, 0, name, 0)
 	queue_free()
 
 func delete_node_with_item() -> void:
 	if parent_node:
-		get_parent().disconnect_node(parent_node.name, 0, name, 0)
+		get_parent().disconnect_node(parent_node, 0, name, 0)
 	queue_free()
 	Global.delete_task = [true, name]
 
@@ -31,8 +31,16 @@ func add_groups():
 	add_to_group("all_nodes_task")
 	add_to_group(self.name)
 
-	if parent_node != null:
-		var parents_groups = parent_node.get_groups()
+	#get node parent
+	var parentNode : Node
+	var nodes = get_tree().get_nodes_in_group("all_nodes_task")
+	for n in nodes:
+		if n.name == parent_node:
+			parentNode = n
+
+
+	if parentNode != null:
+		var parents_groups = parentNode.get_groups()
 		for group in parents_groups:
 			if group != "all_nodes_task":
 				add_to_group(group)

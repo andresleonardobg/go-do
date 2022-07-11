@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 #functions created
-func add_new_node(pos : Vector2, name_n : String, graphEdit : Node, parent_node : Node):
+func add_new_node(pos : Vector2, name_n : String, graphEdit : Node, parent_node : String = ""):
 
 	var node_same_name : Node 
 	var node_child = node.instance()
@@ -42,7 +42,7 @@ func add_new_node(pos : Vector2, name_n : String, graphEdit : Node, parent_node 
 		node_child.version = 0
 		node_child.name = name_n
 	
-	if parent_node == null:
+	if parent_node == "":
 		node_child.set_slot_enabled_left(0, false)
 	
 	node_child.name_node = name_n 

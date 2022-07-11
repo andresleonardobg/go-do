@@ -17,7 +17,7 @@ var connect_to
 
 #propieties new node
 var position_new_node
-var node_parent : Node
+var node_parent : String
 
 #load node
 const node_task = preload("res://scenes/nodoTask.tscn")
@@ -27,9 +27,9 @@ func _ready() -> void:
 	file_window.add_filter("*.json ; JSON files")
 	
 	#load last file edited
-	# if Global.last_file != "":
-	# 	Global.load_data(Global.last_file)
-	# 	display_data()
+	if Global.last_file != "":
+		Global.load_data(Global.last_file)
+		display_data()
 
 
 func _process(_delta: float) -> void:
@@ -51,7 +51,7 @@ func display_data() -> void:
 	for i in Global.data["nodes"]:
 		
 		Global.add_new_node( str2var(i["position"]), i["name_task"], panel_graph, i["parent"])			
-		list_tasks.add_new_items(i["parent"], i["name_task"] )
+		# list_tasks.add_new_items(i["parent"], i["name_task"] )
 	
 	for c in Global.data["conections"]:
 		panel_graph.connect_node(c["from"],c["from_port"],c["to"],c["to_port"])
@@ -65,10 +65,10 @@ func create_new_nodeTask() -> void:
 
 	if panel_graph.get_child_count() == 2:
 		Global.add_new_node(Vector2(50, 200), text_task.text, panel_graph, node_parent)
-		list_tasks.add_new_items("", text_task.text )
+		# list_tasks.add_new_items("", text_task.text )
 	else:
 		Global.add_new_node(position_new_node, text_task.text, panel_graph, node_parent)
-		list_tasks.add_new_items(node_parent.name, text_task.text)
+		# list_tasks.add_new_items(node_parent.name, text_task.text)
 		var name_node = get_tree().get_nodes_in_group("all_nodes_task")
 		panel_graph.connect_node(connect_to, 0, name_node[-1].name, 0)
 	
@@ -116,7 +116,7 @@ func _on_Accept_pressed() -> void:
 
 func _on_GraphEdit_connection_to_empty(from: String, _from_slot: int, _release_position: Vector2) -> void:
 	window_new_task.popup_centered()
-	node_parent = panel_graph.get_node(from)
+	node_parent = panel_graph.get_node(from).name
 	get_node("new_task/VBoxContainer/TextEdit").grab_focus()
 	position_new_node = panel_graph.get_local_mouse_position() + panel_graph.scroll_offset
 	connect_to = from
@@ -147,6 +147,6 @@ func _on_FileDialog_confirmed() -> void:
 
 func _on_delete_all_nodes_pressed() -> void:
 	var nodes_task = get_tree().get_nodes_in_group("all_nodes_task")
-	list_tasks.delete_all_items()
+	# list_tasks.delete_all_items()
 	for node in nodes_task:
 		node.delete_node()
