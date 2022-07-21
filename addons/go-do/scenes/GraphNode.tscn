@@ -1,0 +1,5 @@
+[gd_scene format=2]
+
+[node name="GraphNode" type="GraphNode"]
+margin_right = 200.0
+margin_bottom = 100.0

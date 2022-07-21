@@ -74,8 +74,6 @@ margin_bottom = 572.0
 mouse_default_cursor_shape = 16
 size_flags_horizontal = 3
 size_flags_vertical = 3
-zoom_min = 1.0
-zoom_max = 1.0
 
 [node name="list_of_tasks" parent="HSplitContainer" instance=ExtResource( 1 )]
 visible = false
@@ -132,6 +130,7 @@ margin_right = 481.0
 margin_bottom = 282.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
+window_title = "Guardar un Archivo"
 resizable = true
 access = 2
 show_hidden_files = true

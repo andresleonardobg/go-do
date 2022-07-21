@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/go-do/scripts/mindMap.gd" type="Script" id=1]
+
+[node name="mindMap" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+anchor_right = 1.0
+margin_bottom = 30.0
+
+[node name="Button" type="Button" parent="Panel/HBoxContainer"]
+margin_right = 53.0
+margin_bottom = 30.0
+text = "Nuevo"
+
+[node name="Button2" type="Button" parent="Panel/HBoxContainer"]
+margin_left = 57.0
+margin_right = 119.0
+margin_bottom = 30.0
+text = "Guardar"
+
+[node name="Button3" type="Button" parent="Panel/HBoxContainer"]
+margin_left = 123.0
+margin_right = 225.0
+margin_bottom = 30.0
+text = "Guardar como"
+
+[node name="Button4" type="Button" parent="Panel/HBoxContainer"]
+margin_left = 229.0
+margin_right = 313.0
+margin_bottom = 30.0
+text = "Borrar todo"
+
+[node name="GraphEdit" type="GraphEdit" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 31.0
+
+[connection signal="pressed" from="Panel/HBoxContainer/Button" to="." method="_on_Button_pressed"]

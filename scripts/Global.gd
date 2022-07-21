@@ -29,7 +29,7 @@ func add_new_node(pos : Vector2, name_n : String, graphEdit : Node, parent_node 
 
 	if get_tree().get_nodes_in_group("all_nodes_task"):
 		var all_nodes = get_tree().get_nodes_in_group("all_nodes_task")
-		all_nodes.invert()		
+		all_nodes.invert()
 		for n in all_nodes:
 			if n.name_node == name_n:
 				node_same_name = n

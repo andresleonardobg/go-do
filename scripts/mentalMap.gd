@@ -39,10 +39,10 @@ func _process(_delta: float) -> void:
 		new_proyect.disabled = true
 
 
-func _input(_event: InputEvent) -> void:
-	if window_new_task.visible && text_task.text != "":
-		if Input.is_action_just_pressed("go-do_accept"):
-			create_new_nodeTask()
+# func _input(_event: InputEvent) -> void:
+# 	if window_new_task.visible && text_task.text != "":
+# 		if Input.is_action_just_pressed("go-do_accept"):
+# 			create_new_nodeTask()
 
 
 #functions
