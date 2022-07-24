@@ -1,3 +1,4 @@
+tool
 extends GraphNode
 
 onready var label = $VBoxContainer/HBoxContainer/Label

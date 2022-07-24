@@ -11,12 +11,16 @@ config_version=4
 [application]
 
 config/name="mind map"
-run/main_scene="res://scenes/mentalMap.tscn"
+run/main_scene="res://addons/go-do/scenes/mentalMap.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://scripts/Global.gd"
+Global="*res://addons/go-do/scripts/Global.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/go-do/plugin.cfg" )
 
 [gdnative]
 
