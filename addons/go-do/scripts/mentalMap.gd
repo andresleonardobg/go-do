@@ -25,11 +25,7 @@ const node_task = preload("res://addons/go-do/scenes/nodoTask.tscn")
 func _ready() -> void:
 	
 	file_window.add_filter("*.json ; JSON files")
-	
-	#load last file edited
-	if Global.last_file != "":
-		Global.load_data(Global.last_file)
-		display_data()
+	var dic = Directory.new()
 
 
 func _process(_delta: float) -> void:
@@ -41,7 +37,7 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if window_new_task.visible && text_task.text != "":
-		if Input.is_action_just_pressed("go-do_accept"):
+		if Input.is_action_just_pressed("new_node"):
 			create_new_nodeTask()
 
 

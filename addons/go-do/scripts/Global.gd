@@ -1,8 +1,12 @@
 tool
 extends Node
 
+var directory = Directory.new()
+var can_display_data = false
+
 #save data 
 var data = {
+	"offset_position" : "Vector2(0,0)",
 	"nodes":[],
 	"current_path_data" : ""
 }
@@ -15,11 +19,12 @@ var node = preload("res://addons/go-do/scenes/nodoTask.tscn")
 
 #default functions
 func _ready() -> void:
-	
-	var directory = Directory.new()
-	
 	if directory.file_exists(data_log):
 		load_data_log()
+	
+	if directory.file_exists(last_file):
+		can_display_data = true
+		load_data(last_file)
 
 
 #functions created
@@ -45,11 +50,13 @@ func add_new_node(pos : Vector2, name_n : String, graphEdit : Node, parent_node 
 	
 	if parent_node == "":
 		node_child.set_slot_enabled_left(0, false)
+
 	
 	node_child.name_node = name_n 
 	node_child.parent_node = parent_node
 	graphEdit.add_child(node_child)
 	node_child.offset = pos - (node_child.rect_size / 2)
+	data["offset_position"] = pos - (node_child.rect_size / 2)
 
 
 func save_data(path_data : String) -> void:
