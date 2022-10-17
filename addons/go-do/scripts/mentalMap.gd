@@ -46,22 +46,22 @@ func display_data() -> void:
 	
 	for i in Global.data["nodes"]:
 		
-		Global.add_new_node( str2var(i["position"]), i["name_task"], panel_graph, i["parent"])
+		Global.add_new_node( str2var(i["position"]), i["name_task"], panel_graph, self, i["parent"])
 	
 	for c in Global.data["conections"]:
 		panel_graph.connect_node(c["from"],c["from_port"],c["to"],c["to_port"])
 		
-	Global.data = {
-		"nodes":[]
-		}
+#	Global.data = {
+#		"nodes":[]
+#		}
 
 
 func create_new_nodeTask() -> void:
 
 	if panel_graph.get_child_count() == 2:
-		Global.add_new_node(Vector2(50, 200), text_task.text, panel_graph, node_parent)
+		Global.add_new_node(Vector2(50, 200), text_task.text, panel_graph, self, node_parent)
 	else:
-		Global.add_new_node(position_new_node, text_task.text, panel_graph, node_parent)
+		Global.add_new_node(position_new_node, text_task.text, panel_graph, self, node_parent)
 		var name_node = get_tree().get_nodes_in_group("all_nodes_task")
 		panel_graph.connect_node(connect_to, 0, name_node[-1].name, 0)
 	

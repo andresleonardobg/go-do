@@ -3,16 +3,19 @@ extends GraphNode
 
 onready var label = $VBoxContainer/HBoxContainer/Label
 onready var warning = get_node("ConfirmationDialog")
+onready var info_node = preload("res://addons/go-do/scenes/info_node.tscn")
 
+var principal_node : Node
 
 var parent_node : String 
 var name_node : String
 var version : int
+var description : String
+var subtasks : Array
 
 #deafault functions
 func _ready() -> void:
-
-	add_groups()	
+	add_groups()
 	label.text = name_node
 
 #functions
@@ -48,18 +51,30 @@ func add_groups():
 
 #signals
 func _on_edit_pressed() -> void:
-	print('Editar')
+	
+	var info  = info_node.instance()
+	info.node_task_title = self.name
+	principal_node.add_child(info)
+	info.popup_centered()
 
 func _on_delete_pressed() -> void:
-	queue_free()
+	if get_tree().get_nodes_in_group(self.name).size() == 1:
+		delete_node_with_item()
+		print("nodo y item eliminado")
+	else:
+		warning.popup_centered()
 
 func send_data() -> void:
+	#check if global.data has data
 	Global.data["nodes"].append({
 		"position":var2str(Vector2(offset)),
 		"name_task":name_node,
 		"left":get("slot/0/left_enabled"),
 		"parent":parent_node,
+		"description" : description,
+		"subtasks" : subtasks
 		})
+	#if not verified data 
 
 func _on_nodoTask_close_request() -> void:
 	if get_tree().get_nodes_in_group(self.name).size() == 1:

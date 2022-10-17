@@ -28,10 +28,11 @@ func _ready() -> void:
 
 
 #functions created
-func add_new_node(pos : Vector2, name_n : String, graphEdit : Node, parent_node : String = ""):
+func add_new_node(pos : Vector2, name_n : String, graphEdit : Node, principal_node : Node, parent_node : String = "" ):
 
 	var node_same_name : Node 
 	var node_child = node.instance()
+	node_child.principal_node = principal_node
 
 	if get_tree().get_nodes_in_group("all_nodes_task"):
 		var all_nodes = get_tree().get_nodes_in_group("all_nodes_task")
