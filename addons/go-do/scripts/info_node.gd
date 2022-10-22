@@ -1,8 +1,13 @@
 tool
 extends WindowDialog
 
-onready var title = get_node("Label")
-onready var description = get_node("TextEdit")
+onready var title := get_node("Label")
+onready var description := get_node("TextEdit")
+onready var box_comentary_child := get_node("box_commentary/VBoxContainer")
+onready var window_new_comment := get_node("new_comment_window")
+onready var get_new_comment := get_node("new_comment_window/VBoxContainer/TextEdit")
+var theme_commentary := preload("res://addons/go-do/resources/main_theme.tres")
+
 var data : Dictionary
 var node_task_title :String
 
@@ -66,6 +71,14 @@ func get_info_form_items() -> Array:
 		info.push_back([i.get_text(0), i.is_checked(0)])	
 	return info
 
+func new_commentary( text : String ) -> void:
+	var new_commentary = Label.new()
+	new_commentary.theme = theme_commentary
+	new_commentary.autowrap = true
+	new_commentary.rect_min_size = Vector2(530, 50)
+	new_commentary.text = text
+	box_comentary_child.add_child(new_commentary)
+
 #signals
 func _on_add_new_item_pressed():
 	if name_new_item.text != "":
@@ -75,3 +88,14 @@ func _on_add_new_item_pressed():
 func _on_Tree_item_selected():
 	var item = treee.get_selected()
 	print(list_of_items[0].get_text(0), list_of_items[0].is_checked(0))
+
+
+func _on_add_new_commentary_pressed():
+	window_new_comment.popup_centered()
+	
+
+
+func _on_add_comment_pressed():
+	new_commentary( get_new_comment.text )
+	get_new_comment.text = ""
+	window_new_comment.visible = false
