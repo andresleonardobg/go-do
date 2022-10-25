@@ -1,0 +1,115 @@
+{
+    "conections": [
+        {
+            "from": "proyecto",
+            "from_port": 0,
+            "to": "tarea 1",
+            "to_port": 0
+        },
+        {
+            "from": "proyecto",
+            "from_port": 0,
+            "to": "tarea 2",
+            "to_port": 0
+        },
+        {
+            "from": "proyecto",
+            "from_port": 0,
+            "to": "tarea 3",
+            "to_port": 0
+        },
+        {
+            "from": "tarea 1",
+            "from_port": 0,
+            "to": "subtarea",
+            "to_port": 0
+        },
+        {
+            "from": "tarea 1",
+            "from_port": 0,
+            "to": "subtarea 2",
+            "to_port": 0
+        },
+        {
+            "from": "subtarea 2",
+            "from_port": 0,
+            "to": "sub tarea",
+            "to_port": 0
+        }
+    ],
+    "nodes": [
+        {
+            "description": "",
+            "left": false,
+            "name_task": "proyecto",
+            "parent": "",
+            "position": "Vector2( -900, -160 )",
+            "subtasks": []
+        },
+        {
+            "description": "",
+            "left": true,
+            "name_task": "tarea 1",
+            "parent": "proyecto",
+            "position": "Vector2( -656, -353 )",
+            "subtasks": []
+        },
+        {
+            "description": "",
+            "left": true,
+            "name_task": "tarea 2",
+            "parent": "proyecto",
+            "position": "Vector2( -597, -167 )",
+            "subtasks": []
+        },
+        {
+            "description": "test test ",
+            "left": true,
+            "name_task": "tarea 3",
+            "parent": "proyecto",
+            "position": "Vector2( -657, 50 )",
+            "subtasks": [
+                [
+                    "tarea",
+                    false
+                ],
+                [
+                    "tarea2",
+                    true
+                ],
+                [
+                    "tarea3",
+                    true
+                ],
+                [
+                    "tarea4",
+                    true
+                ]
+            ]
+        },
+        {
+            "description": "",
+            "left": true,
+            "name_task": "sub tarea",
+            "parent": "subtarea 2",
+            "position": "Vector2( -72.043, -397.674 )",
+            "subtasks": []
+        },
+        {
+            "description": "",
+            "left": true,
+            "name_task": "subtarea 2",
+            "parent": "tarea 1",
+            "position": "Vector2( -420, -280 )",
+            "subtasks": []
+        },
+        {
+            "description": "",
+            "left": true,
+            "name_task": "subtarea",
+            "parent": "tarea 1",
+            "position": "Vector2( -420, -460 )",
+            "subtasks": []
+        }
+    ]
+}

@@ -22,7 +22,7 @@ var info_item : Array
 func _ready():
 	treee.set_hide_root(false)
 	root = treee.create_item()
-	root.set_text(0, "subtareas")
+	root.set_text(0, "Subtareas")
 	
 	if Global.data:
 		title.text = node_task_title
@@ -92,7 +92,6 @@ func _on_Tree_item_selected():
 
 func _on_add_new_commentary_pressed():
 	window_new_comment.popup_centered()
-	
 
 
 func _on_add_comment_pressed():
