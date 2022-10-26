@@ -21,6 +21,7 @@ var node_parent : String
 const node_task := preload("res://addons/go-do/scenes/nodoTask.tscn")
 
 func _ready() -> void:
+	Global.mind_map_node = self
 	file_window.add_filter("*.json ; JSON files")
 
 

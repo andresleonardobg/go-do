@@ -22,6 +22,10 @@ Global="*res://addons/go-do/scripts/Global.gd"
 
 singletons=[  ]
 
+[gui]
+
+theme/custom="res://addons/go-do/resources/main_theme.tres"
+
 [input]
 
 new_node={

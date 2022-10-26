@@ -10,8 +10,9 @@ var data : Dictionary
 var data_log = "res://files_loaded.log"
 var last_file = ""
 var current_path_data : String
-var delete_task = [false, ""]
 var task_node = preload("res://addons/go-do/scenes/nodoTask.tscn")
+
+var mind_map_node : Node
 
 #default functions
 func _ready() -> void:
