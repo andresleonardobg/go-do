@@ -7,7 +7,6 @@ onready var panel_info = preload("res://addons/go-do/scenes/info_node.tscn")
 
 var graph_edit : Node
 
-#info about the task node
 var info_about_node : Dictionary 
 
 #deafault functions
@@ -37,11 +36,14 @@ func add_groups():
 				if group != "all_nodes_task" && group != info_about_node["parent_node"]:
 					add_to_group(group)
 
-func send_data() -> void:	
-	info_about_node["position"] = var2str(Vector2(offset))	
+func send_data() -> void:
+	info_about_node["position"] = var2str(Vector2(rect_position))
 	Global.data["nodes"].append(info_about_node)
 
 func set_info_about_node() -> void:
+	if "finished" in info_about_node:
+		node_task_finished( info_about_node["finished"] )
+	
 	self.name = info_about_node["name_task"]
 	
 	title_node.text = info_about_node["name_task"]
@@ -56,6 +58,16 @@ func set_info_about_node() -> void:
 	else:
 		info_about_node["left"] = true
 		set_slot_enabled_left(0, info_about_node["left"])
+
+func node_task_finished( state : bool ) -> void:
+	
+	info_about_node["finished"] = state
+	
+	if state == true:
+		modulate = Color(0.0, 1.0, 0.0, 1.0)
+	else:
+		modulate = Color(1.0, 0.0, 0.0, 1.0)
+
 
 #signals
 func _on_edit_pressed() -> void:	

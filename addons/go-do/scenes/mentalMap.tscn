@@ -47,12 +47,16 @@ margin_bottom = 20.0
 text = "Eliminar todo"
 
 [node name="GraphEdit" type="GraphEdit" parent="."]
-margin_left = 7.0
-margin_top = 32.0
-margin_right = 1017.0
-margin_bottom = 593.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 25.0
+margin_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+scroll_offset = Vector2( 0, -139 )
+zoom_min = 1.0
+zoom_max = 1.0
+show_zoom_label = true
 
 [node name="new_task" type="WindowDialog" parent="."]
 margin_left = 345.0
@@ -103,7 +107,7 @@ size_flags_vertical = 5
 window_title = "Guardar un Archivo"
 resizable = true
 access = 2
-filters = PoolStringArray( "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files" )
+filters = PoolStringArray( "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files" )
 show_hidden_files = true
 
 [connection signal="pressed" from="menu/new" to="." method="_on_new_pressed"]

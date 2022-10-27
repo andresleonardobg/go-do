@@ -12,11 +12,12 @@ var node_task : Node
 var comments : Array
 
 #tree
-onready var treee = get_node("Tree")
+onready var treee := get_node("Tree")
 var root
-onready var name_new_item = get_node("HBoxContainer/name_new_item")
+onready var name_new_item := get_node("HBoxContainer/name_new_item")
 var subtasks : Array
-var info_item : Array
+var info_item : Array #verify to delete
+var item_selected : Object
 
 
 func _ready():
@@ -70,15 +71,14 @@ func create_new_item( name_subtask : String, checked : bool = false) -> void:
 	child.set_editable(0, true)
 	child.set_checked(0, checked)
 	subtasks.append(child)
-	
-	if info_item.size() > 0:
-		child.set_checked(0, checked)
+
 
 func get_info_form_items() -> Array:
 	var info : Array	
 	for i in subtasks:
 		info.push_back([i.get_text(0), i.is_checked(0)])	
 	return info
+
 
 func new_commentary( text_comment : String ) -> void:
 	comments.append(text_comment)
@@ -88,15 +88,16 @@ func new_commentary( text_comment : String ) -> void:
 	new_commentary.text = text_comment
 	box_comentary_child.add_child(new_commentary)
 
+
 #signals
 func _on_add_new_item_pressed():
 	if name_new_item.text != "":
 		create_new_item(name_new_item.text)
 		name_new_item.text = ""
 
+
 func _on_Tree_item_selected():
-	var item = treee.get_selected()
-	print(subtasks[0].get_text(0), subtasks[0].is_checked(0))
+	item_selected = treee.get_selected()
 
 
 func _on_add_new_commentary_pressed():
@@ -110,4 +111,14 @@ func _on_add_comment_pressed():
 
 
 func _on_delete_item_pressed():
-	pass
+	root.remove_child(item_selected)
+	if subtasks.has(item_selected):
+		print('iteme existe en subtasks')
+		subtasks.erase(item_selected)
+	item_selected.free()
+	print("item seleccionado")
+
+
+func _on_finished_pressed() -> void:
+	node_task.node_task_finished( true )
+	print("finalizar tarea")

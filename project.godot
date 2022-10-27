@@ -18,6 +18,10 @@ config/icon="res://icon.png"
 
 Global="*res://addons/go-do/scripts/Global.gd"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/go-do/plugin.cfg" )
+
 [gdnative]
 
 singletons=[  ]

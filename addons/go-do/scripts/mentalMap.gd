@@ -26,21 +26,22 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if panel_graph.get_child_count() < 3:
-		new_proyect_button.disabled = false
-	else:
-		new_proyect_button.disabled = true
+	if panel_graph:
+		if panel_graph.get_child_count() < 3:
+			new_proyect_button.disabled = false
+		else:
+			new_proyect_button.disabled = true
 
 
 func _input(event: InputEvent) -> void:
-	if window_new_task.visible && window_text_task.text != "":
-		if Input.is_key_pressed(KEY_ENTER):
-			create_new_nodeTask()
+	if window_new_task:
+		if window_new_task.visible && window_text_task.text != "":
+			if Input.is_key_pressed(KEY_ENTER):
+				create_new_nodeTask()
 
 #functions
 func display_data() -> void:
 	for i in Global.data["nodes"]:
-#		Global.add_new_node( str2var(i["position"]), i["name_task"], panel_graph, self, i["parent_node"])
 		Global.add_new_node_test( i, panel_graph )
 	
 	for c in Global.data["conections"]:
@@ -50,19 +51,21 @@ func display_data() -> void:
 func create_new_nodeTask() -> void:
 	if panel_graph.get_child_count() == 2:
 		var data : Dictionary  = {
-			"name_task": window_text_task.text,
-			"parent_node": node_parent,
-			"position": Vector2(50, 200)
+			"name_task" : window_text_task.text,
+			"parent_node" : node_parent,
+			"position" : Vector2( 0.0, 0.0 ) - Vector2( 100.0, 42.5 ),
+			"finished" : false
 		}
-		#Global.add_new_node(Vector2(50, 200), window_text_task.text, panel_graph, self, node_parent)
+		
 		Global.add_new_node_test( data, panel_graph )
 	else:
 		var data : Dictionary  = {
 			"name_task": window_text_task.text,
 			"parent_node": node_parent,
-			"position": Vector2(50, 200)
+			"position": position_new_node,
+			"finished" : false
 		}
-		#Global.add_new_node(position_new_node, window_text_task.text, panel_graph, self, node_parent)
+		
 		Global.add_new_node_test( data, panel_graph )
 		var name_node = get_tree().get_nodes_in_group("all_nodes_task")
 		panel_graph.connect_node(connect_to, 0, name_node[-1].name, 0)
@@ -138,3 +141,9 @@ func _on_delete_all_nodes_pressed() -> void:
 	var nodes_task = get_tree().get_nodes_in_group("all_nodes_task")
 	for node in nodes_task:
 		node.delete_node()
+
+
+
+func _on_GraphEdit_connection_from_empty(to: String, to_slot: int, release_position: Vector2) -> void:
+	#position_new_node = release_position
+	pass
