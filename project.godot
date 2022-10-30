@@ -26,10 +26,6 @@ enabled=PoolStringArray( "res://addons/go-do/plugin.cfg" )
 
 singletons=[  ]
 
-[gui]
-
-theme/custom="res://addons/go-do/resources/main_theme.tres"
-
 [input]
 
 new_node={

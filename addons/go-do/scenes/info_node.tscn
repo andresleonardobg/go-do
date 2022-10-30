@@ -10,107 +10,122 @@ anchor_bottom = 0.5
 margin_left = -150.0
 margin_top = -250.0
 margin_right = 400.0
-margin_bottom = 293.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 0, 620 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 popup_exclusive = true
-window_title = "Tarea"
+window_title = "Task"
 script = ExtResource( 1 )
 
-[node name="title" type="Label" parent="."]
+[node name="container" type="VBoxContainer" parent="."]
 anchor_right = 1.0
-margin_bottom = 30.0
-text = "Tarea"
-align = 1
-valign = 1
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+custom_constants/separation = 5
 
-[node name="description" type="TextEdit" parent="."]
-anchor_right = 1.0
-margin_left = 10.0
-margin_top = 40.0
-margin_right = -10.0
-margin_bottom = 140.0
+[node name="title" type="TextEdit" parent="container"]
+margin_right = 540.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 30 )
+text = "Tarea"
+
+[node name="description" type="TextEdit" parent="container"]
+margin_top = 25.0
+margin_right = 540.0
+margin_bottom = 125.0
+rect_min_size = Vector2( 0, 100 )
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
 wrap_enabled = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_right = 1.0
-margin_left = 10.0
-margin_top = 150.0
-margin_bottom = 180.0
+[node name="subtasks" type="HBoxContainer" parent="container"]
+margin_top = 130.0
+margin_right = 540.0
+margin_bottom = 150.0
 size_flags_stretch_ratio = 5.0
 
-[node name="Subtareas" type="Label" parent="HBoxContainer"]
-margin_right = 82.0
-margin_bottom = 34.0
-text = "Subtareas"
+[node name="subtask" type="Label" parent="container/subtasks"]
+margin_top = 3.0
+margin_right = 79.0
+margin_bottom = 17.0
+text = "new subtask"
 align = 1
 valign = 1
 
-[node name="name_new_item" type="TextEdit" parent="HBoxContainer"]
-margin_left = 86.0
-margin_right = 486.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 400, 0 )
+[node name="name_new_item" type="TextEdit" parent="container/subtasks"]
+margin_left = 83.0
+margin_right = 483.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 400, 30 )
 
-[node name="add_new_item" type="Button" parent="HBoxContainer"]
-margin_left = 490.0
-margin_right = 510.0
-margin_bottom = 34.0
+[node name="add_new_item" type="Button" parent="container/subtasks"]
+margin_left = 487.0
+margin_right = 511.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
 text = "+"
 
-[node name="delete_item" type="Button" parent="HBoxContainer"]
-margin_left = 514.0
-margin_right = 531.0
-margin_bottom = 34.0
+[node name="delete_item" type="Button" parent="container/subtasks"]
+margin_left = 515.0
+margin_right = 540.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
 text = "-"
 
-[node name="Tree" type="Tree" parent="."]
-margin_left = 10.0
-margin_top = 190.0
-margin_right = 543.0
-margin_bottom = 340.0
+[node name="Tree" type="Tree" parent="container"]
+margin_top = 155.0
+margin_right = 540.0
+margin_bottom = 305.0
+rect_min_size = Vector2( 0, 150 )
 size_flags_horizontal = 3
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="."]
-anchor_right = 1.0
-margin_top = 350.0
-margin_right = -10.0
-margin_bottom = 375.0
-rect_min_size = Vector2( 0, 25 )
-alignment = 2
-
-[node name="add_new_commentary" type="Button" parent="HBoxContainer3"]
-margin_left = 360.0
+[node name="option-comentary" type="HBoxContainer" parent="container"]
+margin_top = 310.0
 margin_right = 540.0
-margin_bottom = 25.0
-text = "Agregar nuevo comentario"
-
-[node name="box_commentary" type="ScrollContainer" parent="."]
-anchor_right = 1.0
-margin_left = 10.0
-margin_top = 380.0
-margin_right = -10.0
-margin_bottom = 480.0
-rect_min_size = Vector2( 0, 100 )
-scroll_horizontal_enabled = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="box_commentary"]
-custom_constants/separation = 10
+margin_bottom = 330.0
 alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
-anchor_right = 1.0
-margin_left = 10.0
-margin_top = 510.0
-margin_right = -10.0
-margin_bottom = 535.0
+[node name="add_new_commentary" type="Button" parent="container/option-comentary"]
+margin_left = 180.0
+margin_right = 360.0
+margin_bottom = 20.0
+text = "Agregar nuevo comentario"
+
+[node name="box_commentary" type="ScrollContainer" parent="container"]
+margin_top = 335.0
+margin_right = 540.0
+margin_bottom = 555.0
+rect_min_size = Vector2( 0, 220 )
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="container/box_commentary"]
+margin_right = 540.0
+margin_bottom = 220.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+
+[node name="open-close" type="HBoxContainer" parent="container"]
+margin_top = 560.0
+margin_right = 540.0
+margin_bottom = 585.0
 rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
 alignment = 2
 
-[node name="finished" type="Button" parent="HBoxContainer2"]
-margin_left = 467.0
-margin_right = 530.0
+[node name="re-open" type="Button" parent="container/open-close"]
+margin_left = 411.0
+margin_right = 473.0
+margin_bottom = 25.0
+disabled = true
+text = "re-open"
+
+[node name="finished" type="Button" parent="container/open-close"]
+margin_left = 477.0
+margin_right = 540.0
 margin_bottom = 25.0
 text = "finished"
 
@@ -153,9 +168,9 @@ size_flags_horizontal = 3
 text = "Cancelar"
 
 [connection signal="popup_hide" from="." to="." method="_on_info_node_popup_hide"]
-[connection signal="pressed" from="HBoxContainer/add_new_item" to="." method="_on_add_new_item_pressed"]
-[connection signal="pressed" from="HBoxContainer/delete_item" to="." method="_on_delete_item_pressed"]
-[connection signal="item_selected" from="Tree" to="." method="_on_Tree_item_selected"]
-[connection signal="pressed" from="HBoxContainer3/add_new_commentary" to="." method="_on_add_new_commentary_pressed"]
-[connection signal="pressed" from="HBoxContainer2/finished" to="." method="_on_finished_pressed"]
+[connection signal="pressed" from="container/subtasks/add_new_item" to="." method="_on_add_new_item_pressed"]
+[connection signal="pressed" from="container/subtasks/delete_item" to="." method="_on_delete_item_pressed"]
+[connection signal="item_selected" from="container/Tree" to="." method="_on_Tree_item_selected"]
+[connection signal="pressed" from="container/option-comentary/add_new_commentary" to="." method="_on_add_new_commentary_pressed"]
+[connection signal="pressed" from="container/open-close/finished" to="." method="_on_finished_pressed"]
 [connection signal="pressed" from="new_comment_window/VBoxContainer/HBoxContainer/add_comment" to="." method="_on_add_comment_pressed"]

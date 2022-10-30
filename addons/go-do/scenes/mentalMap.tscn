@@ -53,7 +53,6 @@ margin_top = 25.0
 margin_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-scroll_offset = Vector2( 0, -139 )
 zoom_min = 1.0
 zoom_max = 1.0
 show_zoom_label = true
@@ -107,7 +106,7 @@ size_flags_vertical = 5
 window_title = "Guardar un Archivo"
 resizable = true
 access = 2
-filters = PoolStringArray( "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files" )
+filters = PoolStringArray( "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files" )
 show_hidden_files = true
 
 [connection signal="pressed" from="menu/new" to="." method="_on_new_pressed"]
@@ -118,3 +117,13 @@ show_hidden_files = true
 [connection signal="connection_to_empty" from="GraphEdit" to="." method="_on_GraphEdit_connection_to_empty"]
 [connection signal="pressed" from="new_task/VBoxContainer/Accept" to="." method="_on_Accept_pressed"]
 [connection signal="confirmed" from="FileDialog" to="." method="_on_FileDialog_confirmed"]
+[connection signal="popup_hide" from="info_node" to="info_node" method="_on_info_node_popup_hide"]
+[connection signal="popup_hide" from="info_node2" to="info_node2" method="_on_info_node_popup_hide"]
+[connection signal="popup_hide" from="info_node3" to="info_node3" method="_on_info_node_popup_hide"]
+[connection signal="popup_hide" from="info_node4" to="info_node4" method="_on_info_node_popup_hide"]
+[connection signal="popup_hide" from="info_node5" to="info_node5" method="_on_info_node_popup_hide"]
+[connection signal="popup_hide" from="info_node6" to="info_node6" method="_on_info_node_popup_hide"]
+[connection signal="popup_hide" from="info_node7" to="info_node7" method="_on_info_node_popup_hide"]
+[connection signal="popup_hide" from="info_node8" to="info_node8" method="_on_info_node_popup_hide"]
+[connection signal="popup_hide" from="info_node9" to="info_node9" method="_on_info_node_popup_hide"]
+[connection signal="popup_hide" from="info_node10" to="info_node10" method="_on_info_node_popup_hide"]

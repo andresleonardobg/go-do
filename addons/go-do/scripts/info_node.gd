@@ -1,20 +1,21 @@
 tool
 extends WindowDialog
 
-onready var title_panel := get_node("title")
-onready var description := get_node("description")
-onready var box_comentary_child := get_node("box_commentary/VBoxContainer")
-onready var window_new_comment := get_node("new_comment_window")
+onready var title_panel := get_node("container/title")
+onready var description := get_node("container/description")
+onready var box_comentary_child := get_node("container/box_commentary/VBoxContainer")
+onready var new_comment_window := get_node("new_comment_window")
 onready var get_new_comment := get_node("new_comment_window/VBoxContainer/TextEdit")
+var commentary = load("res://addons/go-do/scenes/commentary.tscn")
 
 var node_task : Node
 
 var comments : Array
 
 #tree
-onready var treee := get_node("Tree")
+onready var treee := get_node("container/Tree")
 var root
-onready var name_new_item := get_node("HBoxContainer/name_new_item")
+onready var name_new_item := get_node("container/subtasks/name_new_item")
 var subtasks : Array
 var info_item : Array #verify to delete
 var item_selected : Object
@@ -42,6 +43,9 @@ func _ready():
 
 
 func _on_info_node_popup_hide():
+	
+	if title_panel.text != "":
+		node_task.info_about_node["name_task"] = title_panel.text
 #
 	if description.text != "":
 		node_task.info_about_node["description"] = description.text
@@ -74,7 +78,7 @@ func create_new_item( name_subtask : String, checked : bool = false) -> void:
 
 
 func get_info_form_items() -> Array:
-	var info : Array	
+	var info : Array
 	for i in subtasks:
 		info.push_back([i.get_text(0), i.is_checked(0)])	
 	return info
@@ -82,10 +86,9 @@ func get_info_form_items() -> Array:
 
 func new_commentary( text_comment : String ) -> void:
 	comments.append(text_comment)
-	var new_commentary = Label.new()
-	new_commentary.autowrap = true
-	new_commentary.rect_min_size = Vector2(530, 50)
-	new_commentary.text = text_comment
+	var new_commentary = commentary.instance()
+	new_commentary.panel_info = self
+	new_commentary.text_commentary = text_comment
 	box_comentary_child.add_child(new_commentary)
 
 
@@ -101,13 +104,13 @@ func _on_Tree_item_selected():
 
 
 func _on_add_new_commentary_pressed():
-	window_new_comment.popup_centered()
+	new_comment_window.popup_centered()
 
 
 func _on_add_comment_pressed():
 	new_commentary( get_new_comment.text )
 	get_new_comment.text = ""
-	window_new_comment.visible = false
+	new_comment_window.visible = false
 
 
 func _on_delete_item_pressed():

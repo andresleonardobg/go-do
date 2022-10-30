@@ -14,6 +14,14 @@ func _ready() -> void:
 	set_info_about_node()
 	add_groups()
 
+func _process(delta: float) -> void:
+	
+	if title_node.text != info_about_node["name_task"]:
+		get_parent().disconnect_node(info_about_node["parent_node"], 0, name, 0)
+		title_node.text = info_about_node["name_task"]
+		self.name = info_about_node["name_task"]
+		get_parent().connect_node(info_about_node["parent_node"], 0, info_about_node["name_task"], 0)
+
 #functions
 func delete_node() -> void:
 	if "parent_node" in info_about_node:
