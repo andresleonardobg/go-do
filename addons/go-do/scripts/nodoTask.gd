@@ -21,6 +21,9 @@ func _process(delta: float) -> void:
 		title_node.text = info_about_node["name_task"]
 		self.name = info_about_node["name_task"]
 		get_parent().connect_node(info_about_node["parent_node"], 0, info_about_node["name_task"], 0)
+	
+	if info_about_node["finished"] == false:
+		modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 #functions
 func delete_node() -> void:
@@ -73,9 +76,6 @@ func node_task_finished( state : bool ) -> void:
 	
 	if state == true:
 		modulate = Color(0.0, 1.0, 0.0, 1.0)
-	else:
-		modulate = Color(1.0, 0.0, 0.0, 1.0)
-
 
 #signals
 func _on_edit_pressed() -> void:	

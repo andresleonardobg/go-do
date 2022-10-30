@@ -13,43 +13,44 @@ script = ExtResource( 2 )
 anchor_right = 1.0
 margin_left = 6.0
 margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 5
 
 [node name="new" type="Button" parent="menu"]
-margin_right = 113.0
+margin_right = 89.0
 margin_bottom = 20.0
-text = "Nuevo proyecto"
+text = "New project"
 
 [node name="load" type="Button" parent="menu"]
-margin_left = 118.0
-margin_right = 169.0
+margin_left = 94.0
+margin_right = 136.0
 margin_bottom = 20.0
-text = "Cargar"
+text = "Load"
 
 [node name="save" type="Button" parent="menu"]
-margin_left = 174.0
-margin_right = 236.0
+margin_left = 141.0
+margin_right = 182.0
 margin_bottom = 20.0
-text = "Guardar"
+text = "Save"
 
 [node name="save as" type="Button" parent="menu"]
-margin_left = 241.0
-margin_right = 343.0
+margin_left = 187.0
+margin_right = 246.0
 margin_bottom = 20.0
-text = "Guardar como"
+text = "Save as"
 
 [node name="delete all nodes" type="Button" parent="menu"]
-margin_left = 348.0
-margin_right = 445.0
+margin_left = 251.0
+margin_right = 368.0
 margin_bottom = 20.0
-text = "Eliminar todo"
+text = "Delete all nodes"
 
 [node name="GraphEdit" type="GraphEdit" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 25.0
+margin_top = 26.0
 margin_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -106,7 +107,7 @@ size_flags_vertical = 5
 window_title = "Guardar un Archivo"
 resizable = true
 access = 2
-filters = PoolStringArray( "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files" )
+filters = PoolStringArray( "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files" )
 show_hidden_files = true
 
 [connection signal="pressed" from="menu/new" to="." method="_on_new_pressed"]
@@ -117,13 +118,3 @@ show_hidden_files = true
 [connection signal="connection_to_empty" from="GraphEdit" to="." method="_on_GraphEdit_connection_to_empty"]
 [connection signal="pressed" from="new_task/VBoxContainer/Accept" to="." method="_on_Accept_pressed"]
 [connection signal="confirmed" from="FileDialog" to="." method="_on_FileDialog_confirmed"]
-[connection signal="popup_hide" from="info_node" to="info_node" method="_on_info_node_popup_hide"]
-[connection signal="popup_hide" from="info_node2" to="info_node2" method="_on_info_node_popup_hide"]
-[connection signal="popup_hide" from="info_node3" to="info_node3" method="_on_info_node_popup_hide"]
-[connection signal="popup_hide" from="info_node4" to="info_node4" method="_on_info_node_popup_hide"]
-[connection signal="popup_hide" from="info_node5" to="info_node5" method="_on_info_node_popup_hide"]
-[connection signal="popup_hide" from="info_node6" to="info_node6" method="_on_info_node_popup_hide"]
-[connection signal="popup_hide" from="info_node7" to="info_node7" method="_on_info_node_popup_hide"]
-[connection signal="popup_hide" from="info_node8" to="info_node8" method="_on_info_node_popup_hide"]
-[connection signal="popup_hide" from="info_node9" to="info_node9" method="_on_info_node_popup_hide"]
-[connection signal="popup_hide" from="info_node10" to="info_node10" method="_on_info_node_popup_hide"]

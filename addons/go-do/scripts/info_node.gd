@@ -6,6 +6,9 @@ onready var description := get_node("container/description")
 onready var box_comentary_child := get_node("container/box_commentary/VBoxContainer")
 onready var new_comment_window := get_node("new_comment_window")
 onready var get_new_comment := get_node("new_comment_window/VBoxContainer/TextEdit")
+onready var re_open := get_node("container/open-close/re-open")
+onready var name_new_item := get_node("container/subtasks/name_new_item")
+
 var commentary = load("res://addons/go-do/scenes/commentary.tscn")
 
 var node_task : Node
@@ -15,13 +18,15 @@ var comments : Array
 #tree
 onready var treee := get_node("container/Tree")
 var root
-onready var name_new_item := get_node("container/subtasks/name_new_item")
 var subtasks : Array
 var info_item : Array #verify to delete
 var item_selected : Object
 
 
 func _ready():
+	
+	task_is_finished()
+	
 	root = treee.create_item()
 	root.set_text(0, "Subtareas")
 	
@@ -40,6 +45,31 @@ func _ready():
 	if "subtasks" in node_task.info_about_node && node_task.info_about_node["subtasks"].size() != 0:
 		for sub_task in node_task.info_about_node["subtasks"]:
 			create_new_item( sub_task[0], sub_task[1] )
+
+
+func _process(delta: float) -> void:
+	task_is_finished()
+
+
+func task_is_finished():
+	var nodes_to_disable = [get_tree().get_nodes_in_group("buttons"), get_tree().get_nodes_in_group("texts")]
+	
+	if node_task.info_about_node["finished"]:
+		re_open.disabled = false
+		
+		for b in nodes_to_disable[0]:
+			b.disabled = true
+		
+		for t in nodes_to_disable[1]:
+			t.readonly = true
+		
+	else:
+		re_open.disabled = true
+		for b in nodes_to_disable[0]:
+			b.disabled = false
+		
+		for t in nodes_to_disable[1]:
+			t.readonly = false
 
 
 func _on_info_node_popup_hide():
@@ -125,3 +155,7 @@ func _on_delete_item_pressed():
 func _on_finished_pressed() -> void:
 	node_task.node_task_finished( true )
 	print("finalizar tarea")
+
+
+func _on_reopen_pressed() -> void:
+	node_task.info_about_node["finished"] = false

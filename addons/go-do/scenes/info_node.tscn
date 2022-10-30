@@ -27,77 +27,77 @@ margin_right = -5.0
 margin_bottom = -5.0
 custom_constants/separation = 5
 
-[node name="title" type="TextEdit" parent="container"]
+[node name="title" type="TextEdit" parent="container" groups=["texts"]]
 margin_right = 540.0
-margin_bottom = 20.0
+margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 text = "Tarea"
 
-[node name="description" type="TextEdit" parent="container"]
-margin_top = 25.0
+[node name="description" type="TextEdit" parent="container" groups=["texts"]]
+margin_top = 35.0
 margin_right = 540.0
-margin_bottom = 125.0
+margin_bottom = 135.0
 rect_min_size = Vector2( 0, 100 )
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
 wrap_enabled = true
 
 [node name="subtasks" type="HBoxContainer" parent="container"]
-margin_top = 130.0
+margin_top = 140.0
 margin_right = 540.0
-margin_bottom = 150.0
+margin_bottom = 170.0
 size_flags_stretch_ratio = 5.0
 
 [node name="subtask" type="Label" parent="container/subtasks"]
-margin_top = 3.0
+margin_top = 8.0
 margin_right = 79.0
-margin_bottom = 17.0
+margin_bottom = 22.0
 text = "new subtask"
 align = 1
 valign = 1
 
-[node name="name_new_item" type="TextEdit" parent="container/subtasks"]
+[node name="name_new_item" type="TextEdit" parent="container/subtasks" groups=["texts"]]
 margin_left = 83.0
 margin_right = 483.0
-margin_bottom = 20.0
+margin_bottom = 30.0
 rect_min_size = Vector2( 400, 30 )
 
-[node name="add_new_item" type="Button" parent="container/subtasks"]
+[node name="add_new_item" type="Button" parent="container/subtasks" groups=["buttons"]]
 margin_left = 487.0
 margin_right = 511.0
-margin_bottom = 20.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
 text = "+"
 
-[node name="delete_item" type="Button" parent="container/subtasks"]
+[node name="delete_item" type="Button" parent="container/subtasks" groups=["buttons"]]
 margin_left = 515.0
 margin_right = 540.0
-margin_bottom = 20.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
 text = "-"
 
 [node name="Tree" type="Tree" parent="container"]
-margin_top = 155.0
+margin_top = 175.0
 margin_right = 540.0
-margin_bottom = 305.0
+margin_bottom = 325.0
 rect_min_size = Vector2( 0, 150 )
 size_flags_horizontal = 3
 
 [node name="option-comentary" type="HBoxContainer" parent="container"]
-margin_top = 310.0
+margin_top = 330.0
 margin_right = 540.0
-margin_bottom = 330.0
+margin_bottom = 350.0
 alignment = 1
 
-[node name="add_new_commentary" type="Button" parent="container/option-comentary"]
+[node name="add_new_commentary" type="Button" parent="container/option-comentary" groups=["buttons"]]
 margin_left = 180.0
 margin_right = 360.0
 margin_bottom = 20.0
 text = "Agregar nuevo comentario"
 
 [node name="box_commentary" type="ScrollContainer" parent="container"]
-margin_top = 335.0
+margin_top = 355.0
 margin_right = 540.0
-margin_bottom = 555.0
+margin_bottom = 575.0
 rect_min_size = Vector2( 0, 220 )
 scroll_horizontal_enabled = false
 
@@ -109,9 +109,9 @@ size_flags_vertical = 3
 custom_constants/separation = 10
 
 [node name="open-close" type="HBoxContainer" parent="container"]
-margin_top = 560.0
+margin_top = 580.0
 margin_right = 540.0
-margin_bottom = 585.0
+margin_bottom = 605.0
 rect_min_size = Vector2( 0, 25 )
 size_flags_horizontal = 3
 alignment = 2
@@ -123,7 +123,7 @@ margin_bottom = 25.0
 disabled = true
 text = "re-open"
 
-[node name="finished" type="Button" parent="container/open-close"]
+[node name="finished" type="Button" parent="container/open-close" groups=["buttons"]]
 margin_left = 477.0
 margin_right = 540.0
 margin_bottom = 25.0
@@ -172,5 +172,6 @@ text = "Cancelar"
 [connection signal="pressed" from="container/subtasks/delete_item" to="." method="_on_delete_item_pressed"]
 [connection signal="item_selected" from="container/Tree" to="." method="_on_Tree_item_selected"]
 [connection signal="pressed" from="container/option-comentary/add_new_commentary" to="." method="_on_add_new_commentary_pressed"]
+[connection signal="pressed" from="container/open-close/re-open" to="." method="_on_reopen_pressed"]
 [connection signal="pressed" from="container/open-close/finished" to="." method="_on_finished_pressed"]
 [connection signal="pressed" from="new_comment_window/VBoxContainer/HBoxContainer/add_comment" to="." method="_on_add_comment_pressed"]

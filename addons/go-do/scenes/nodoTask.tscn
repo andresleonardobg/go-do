@@ -3,7 +3,6 @@
 [ext_resource path="res://addons/go-do/scripts/nodoTask.gd" type="Script" id=1]
 
 [node name="nodoTask" type="GraphNode"]
-modulate = Color( 1, 0, 0, 1 )
 margin_right = 200.0
 margin_bottom = 80.0
 mouse_filter = 1
