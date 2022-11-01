@@ -63,13 +63,20 @@ func task_is_finished():
 		for t in nodes_to_disable[1]:
 			t.readonly = true
 		
+		for c in box_comentary_child.get_children():
+			c.disable_button = true
+		
 	else:
 		re_open.disabled = true
+		
 		for b in nodes_to_disable[0]:
 			b.disabled = false
 		
 		for t in nodes_to_disable[1]:
 			t.readonly = false
+		
+		for c in box_comentary_child.get_children():
+			c.disable_button = false
 
 
 func _on_info_node_popup_hide():
@@ -118,6 +125,7 @@ func new_commentary( text_comment : String ) -> void:
 	comments.append(text_comment)
 	var new_commentary = commentary.instance()
 	new_commentary.panel_info = self
+	new_commentary.disable_button = node_task.info_about_node["finished"]
 	new_commentary.text_commentary = text_comment
 	box_comentary_child.add_child(new_commentary)
 
