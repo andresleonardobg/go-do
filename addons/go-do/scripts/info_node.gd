@@ -161,9 +161,24 @@ func _on_delete_item_pressed():
 
 
 func _on_finished_pressed() -> void:
-	node_task.node_task_finished( true )
-	print("finalizar tarea")
+	
+	var can_finish := false
+	
+	var node_task_childs := get_tree().get_nodes_in_group(node_task.name)
+	
+	if every_child_is_finished( node_task_childs ):
+		node_task.node_task_finished( true )
 
+
+func every_child_is_finished( childs : Array ) -> bool:
+	if childs.size() > 1:
+		for child in childs:
+			if child.info_about_node["finished"] == false and child.name != self.name:
+				print("los hijos aun no estan finalizados")
+				return false
+				break
+	print("se puede finalizar la tarea")
+	return true
 
 func _on_reopen_pressed() -> void:
 	node_task.info_about_node["finished"] = false

@@ -42,31 +42,36 @@ func _input(event: InputEvent) -> void:
 #functions
 func display_data() -> void:
 	for i in Global.data["nodes"]:
-		Global.add_new_node_test( i, panel_graph )
+		Global.add_new_node( i, panel_graph )
 	
 	for c in Global.data["conections"]:
 		panel_graph.connect_node(c["from"],c["from_port"],c["to"],c["to_port"])
 
 
 func create_new_nodeTask() -> void:
+	
+	var data : Dictionary
+	
 	if panel_graph.get_child_count() == 2:
-		var data : Dictionary  = {
+		data = {
 			"name_task" : window_text_task.text,
 			"parent_node" : node_parent,
 			"position" : Vector2( 0.0, 0.0 ) - Vector2( 100.0, 42.5 ),
-			"finished" : false
+			"finished" : false,
+			"version" : 0
 		}
 		
-		Global.add_new_node_test( data, panel_graph )
+		Global.add_new_node( data, panel_graph )
 	else:
-		var data : Dictionary  = {
+		data = {
 			"name_task": window_text_task.text,
 			"parent_node": node_parent,
 			"position": position_new_node,
-			"finished" : false
+			"finished" : false,
+			"version" : 0
 		}
 		
-		Global.add_new_node_test( data, panel_graph )
+		Global.add_new_node( data, panel_graph )
 		var name_node = get_tree().get_nodes_in_group("all_nodes_task")
 		panel_graph.connect_node(connect_to, 0, name_node[-1].name, 0)
 	
