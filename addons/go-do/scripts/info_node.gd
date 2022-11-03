@@ -164,16 +164,18 @@ func _on_finished_pressed() -> void:
 	
 	var can_finish := false
 	
-	var node_task_childs := get_tree().get_nodes_in_group(node_task.name)
-	
-	if every_child_is_finished( node_task_childs ):
+	if every_child_is_finished():
 		node_task.node_task_finished( true )
 
 
-func every_child_is_finished( childs : Array ) -> bool:
+func every_child_is_finished() -> bool:
+	var childs := get_tree().get_nodes_in_group(node_task.name)
+	print(childs.size())
 	if childs.size() > 1:
 		for child in childs:
-			if child.info_about_node["finished"] == false and child.name != self.name:
+			if child.info_about_node["finished"] == false and child.name != node_task.name:
+				print(child.name)
+				print(child.info_about_node["finished"])
 				print("los hijos aun no estan finalizados")
 				return false
 				break
@@ -181,4 +183,6 @@ func every_child_is_finished( childs : Array ) -> bool:
 	return true
 
 func _on_reopen_pressed() -> void:
+	node_task.re_open()
+	node_task.emit_signal("task_finished_state")
 	node_task.info_about_node["finished"] = false

@@ -146,9 +146,3 @@ func _on_delete_all_nodes_pressed() -> void:
 	var nodes_task = get_tree().get_nodes_in_group("all_nodes_task")
 	for node in nodes_task:
 		node.delete_node()
-
-
-
-func _on_GraphEdit_connection_from_empty(to: String, to_slot: int, release_position: Vector2) -> void:
-	#position_new_node = release_position
-	pass

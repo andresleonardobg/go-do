@@ -9,36 +9,22 @@ var graph_edit : Node
 
 var info_about_node : Dictionary 
 
-signal task_open
+signal task_finished_state
 
 #deafault functions
 func _ready() -> void:
-	var p = get_parent().get_children()
-	var pr : Node
-	
-	if info_about_node["parent_node"] != "":
-		for i in p:
-			if i.name == info_about_node["parent_node"]:
-				pr = i
-		pr.connect()
-		pr.info_about_node["finished"] = false
-	
-	
-	print()
+	set_finished_state_parent()
 	set_info_about_node()
 	add_groups()
 
 func _process(delta: float) -> void:
+	
 	if title_node:
 		if title_node.text != info_about_node["name_task"]:
 			get_parent().disconnect_node(info_about_node["parent_node"], 0, name, 0)
 			title_node.text = info_about_node["name_task"]
 			self.name = info_about_node["name_task"]
 			get_parent().connect_node(info_about_node["parent_node"], 0, info_about_node["name_task"], 0)
-	
-	if info_about_node:
-		if info_about_node["finished"] == false:
-			modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 #functions
 func delete_node() -> void:
@@ -92,8 +78,29 @@ func node_task_finished( state : bool ) -> void:
 	if state == true:
 		modulate = Color(0.0, 1.0, 0.0, 1.0)
 
+
+func set_finished_state_parent() -> void:
+	var nodes_on_grapht_edit = get_parent().get_children()
+	var parent_node : Node
+	
+	if info_about_node["parent_node"] != "":
+		for node in nodes_on_grapht_edit:
+			if node.name == info_about_node["parent_node"]:
+				parent_node = node
+		parent_node.info_about_node["finished"] = false
+		parent_node.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	connect("task_finished_state", parent_node, "re_open")
+	re_open()
+
+
+func re_open() -> void:
+	print("senal emitida")
+	emit_signal("task_finished_state")
+	modulate = Color(1.0, 1.0, 1.0, 1.0)
+	info_about_node["finished"] = false
+
 #signals
-func _on_edit_pressed() -> void:	
+func _on_edit_pressed() -> void:
 	var info_task  = panel_info.instance()
 	info_task.node_task = self
 	Global.mind_map_node.add_child(info_task)
