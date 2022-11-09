@@ -9,6 +9,7 @@ var graph_edit : Node
 
 var info_about_node : Dictionary 
 
+#own signals
 signal task_finished_state
 
 #deafault functions
@@ -16,15 +17,6 @@ func _ready() -> void:
 	set_finished_state_parent()
 	set_info_about_node()
 	add_groups()
-
-func _process(delta: float) -> void:
-	
-	if title_node:
-		if title_node.text != info_about_node["name_task"]:
-			get_parent().disconnect_node(info_about_node["parent_node"], 0, name, 0)
-			title_node.text = info_about_node["name_task"]
-			self.name = info_about_node["name_task"]
-			get_parent().connect_node(info_about_node["parent_node"], 0, info_about_node["name_task"], 0)
 
 #functions
 func delete_node() -> void:
@@ -39,7 +31,6 @@ func add_groups():
 	add_to_group(self.name)
 
 	#get node_parent's groups
-	var parentNode : Node
 	var nodes = get_tree().get_nodes_in_group("all_nodes_task")
 	for n in nodes:
 		if n.name == info_about_node["parent_node"]:
@@ -56,7 +47,7 @@ func set_info_about_node() -> void:
 	if "finished" in info_about_node:
 		node_task_finished( info_about_node["finished"] )
 	
-	self.name = info_about_node["name_task"] + str(info_about_node["version"])
+	#self.name = name + str(info_about_node["version"])
 	
 	title_node.text = info_about_node["name_task"]
 	
@@ -82,22 +73,23 @@ func node_task_finished( state : bool ) -> void:
 func set_finished_state_parent() -> void:
 	var nodes_on_grapht_edit = get_parent().get_children()
 	var parent_node : Node
-	
+	print(info_about_node["parent_node"])
 	if info_about_node["parent_node"] != "":
 		for node in nodes_on_grapht_edit:
 			if node.name == info_about_node["parent_node"]:
 				parent_node = node
-		parent_node.info_about_node["finished"] = false
-		parent_node.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		parent_node.re_open()
 	connect("task_finished_state", parent_node, "re_open")
-	re_open()
 
 
 func re_open() -> void:
-	print("senal emitida")
 	emit_signal("task_finished_state")
 	modulate = Color(1.0, 1.0, 1.0, 1.0)
 	info_about_node["finished"] = false
+
+func change_name( new_name : String) -> void:
+	info_about_node["name_task"] = new_name
+	title_node.text = new_name
 
 #signals
 func _on_edit_pressed() -> void:

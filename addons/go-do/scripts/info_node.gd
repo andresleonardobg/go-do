@@ -22,15 +22,23 @@ var subtasks : Array
 var info_item : Array #verify to delete
 var item_selected : Object
 
+#own signals
+signal name_is_change
+
 
 func _ready():
 	
-	task_is_finished()
+	connect("name_is_change", node_task, "change_name")
+
+	disable_or_enable_nodes()
 	
 	root = treee.create_item()
 	root.set_text(0, "Subtareas")
-	
-	#show info_about_node in panel
+
+	show_info_about_node()
+
+
+func show_info_about_node() -> void:
 	title_panel.text = node_task.info_about_node["name_task"]
 	
 	if "description" in node_task.info_about_node:
@@ -47,36 +55,18 @@ func _ready():
 			create_new_item( sub_task[0], sub_task[1] )
 
 
-func _process(delta: float) -> void:
-	task_is_finished()
-
-
-func task_is_finished():
-	var nodes_to_disable = [get_tree().get_nodes_in_group("buttons"), get_tree().get_nodes_in_group("texts")]
+func disable_or_enable_nodes() -> void:
 	
-	if node_task.info_about_node["finished"]:
-		re_open.disabled = false
+	var disable_enable_nodes = get_tree().get_nodes_in_group("set_disable_enable")
+
+	re_open.disabled = !node_task.info_about_node["finished"]
+
+	for node in disable_enable_nodes:
+		if node is TextEdit:
+			node.readonly = node_task.info_about_node["finished"]
 		
-		for b in nodes_to_disable[0]:
-			b.disabled = true
-		
-		for t in nodes_to_disable[1]:
-			t.readonly = true
-		
-		for c in box_comentary_child.get_children():
-			c.disable_button = true
-		
-	else:
-		re_open.disabled = true
-		
-		for b in nodes_to_disable[0]:
-			b.disabled = false
-		
-		for t in nodes_to_disable[1]:
-			t.readonly = false
-		
-		for c in box_comentary_child.get_children():
-			c.disable_button = false
+		if node is Button:
+			node.disabled = node_task.info_about_node["finished"]
 
 
 func _on_info_node_popup_hide():
@@ -101,7 +91,7 @@ func _on_info_node_popup_hide():
 			info_subtasks.append([ task.get_text(0), task.is_checked(0) ])
 	
 	node_task.info_about_node["subtasks"] = info_subtasks
-	
+	emit_signal("name_is_change", title_panel.text)
 	queue_free()
 
 #functions
@@ -162,10 +152,9 @@ func _on_delete_item_pressed():
 
 func _on_finished_pressed() -> void:
 	
-	var can_finish := false
-	
 	if every_child_is_finished():
 		node_task.node_task_finished( true )
+		disable_or_enable_nodes()
 
 
 func every_child_is_finished() -> bool:
@@ -176,13 +165,14 @@ func every_child_is_finished() -> bool:
 			if child.info_about_node["finished"] == false and child.name != node_task.name:
 				print(child.name)
 				print(child.info_about_node["finished"])
-				print("los hijos aun no estan finalizados")
+				print("children nodes has not finished yet")
 				return false
 				break
-	print("se puede finalizar la tarea")
+	print("the node can be finished")
 	return true
 
 func _on_reopen_pressed() -> void:
 	node_task.re_open()
 	node_task.emit_signal("task_finished_state")
 	node_task.info_about_node["finished"] = false
+	disable_or_enable_nodes()

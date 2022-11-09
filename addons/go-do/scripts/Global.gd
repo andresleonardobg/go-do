@@ -29,16 +29,6 @@ func add_new_node( node_task_data : Dictionary, graph_panel : Node ):
 	var new_node_task = task_node.instance()
 	new_node_task.info_about_node = node_task_data
 	
-	#verify version of node
-	var all_nodes_task := get_tree().get_nodes_in_group("all_nodes_task")
-	all_nodes_task.invert()
-	
-	if all_nodes_task.size() != 0:
-		for node_task in all_nodes_task:
-			if node_task.info_about_node["name_task"] == new_node_task.info_about_node["name_task"]:
-				new_node_task.info_about_node["version"] = node_task.info_about_node["version"] + 1
-				break
-	
 	graph_panel.add_child(new_node_task)
 
 

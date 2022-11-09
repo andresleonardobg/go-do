@@ -49,6 +49,7 @@ func display_data() -> void:
 
 
 func create_new_nodeTask() -> void:
+	print(get_tree().get_nodes_in_group("all_nodes_task").size())
 	
 	var data : Dictionary
 	
@@ -58,7 +59,7 @@ func create_new_nodeTask() -> void:
 			"parent_node" : node_parent,
 			"position" : Vector2( 0.0, 0.0 ) - Vector2( 100.0, 42.5 ),
 			"finished" : false,
-			"version" : 0
+			"version" : get_tree().get_nodes_in_group("all_nodes_task").size()
 		}
 		
 		Global.add_new_node( data, panel_graph )
@@ -68,7 +69,7 @@ func create_new_nodeTask() -> void:
 			"parent_node": node_parent,
 			"position": position_new_node,
 			"finished" : false,
-			"version" : 0
+			"version" : get_tree().get_nodes_in_group("all_nodes_task").size()
 		}
 		
 		Global.add_new_node( data, panel_graph )

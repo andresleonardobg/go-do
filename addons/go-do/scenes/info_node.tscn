@@ -27,13 +27,13 @@ margin_right = -5.0
 margin_bottom = -5.0
 custom_constants/separation = 5
 
-[node name="title" type="TextEdit" parent="container" groups=["texts"]]
+[node name="title" type="TextEdit" parent="container" groups=["set_disable_enable"]]
 margin_right = 540.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 text = "Tarea"
 
-[node name="description" type="TextEdit" parent="container" groups=["texts"]]
+[node name="description" type="TextEdit" parent="container" groups=["set_disable_enable"]]
 margin_top = 35.0
 margin_right = 540.0
 margin_bottom = 135.0
@@ -55,20 +55,20 @@ text = "new subtask"
 align = 1
 valign = 1
 
-[node name="name_new_item" type="TextEdit" parent="container/subtasks" groups=["texts"]]
+[node name="name_new_item" type="TextEdit" parent="container/subtasks" groups=["set_disable_enable"]]
 margin_left = 83.0
 margin_right = 483.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 400, 30 )
 
-[node name="add_new_item" type="Button" parent="container/subtasks" groups=["buttons"]]
+[node name="add_new_item" type="Button" parent="container/subtasks" groups=["set_disable_enable"]]
 margin_left = 487.0
 margin_right = 511.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
 text = "+"
 
-[node name="delete_item" type="Button" parent="container/subtasks" groups=["buttons"]]
+[node name="delete_item" type="Button" parent="container/subtasks" groups=["set_disable_enable"]]
 margin_left = 515.0
 margin_right = 540.0
 margin_bottom = 30.0
@@ -88,7 +88,7 @@ margin_right = 540.0
 margin_bottom = 350.0
 alignment = 1
 
-[node name="add_new_commentary" type="Button" parent="container/option-comentary" groups=["buttons"]]
+[node name="add_new_commentary" type="Button" parent="container/option-comentary" groups=["set_disable_enable"]]
 margin_left = 180.0
 margin_right = 360.0
 margin_bottom = 20.0
@@ -123,7 +123,7 @@ margin_bottom = 25.0
 disabled = true
 text = "re-open"
 
-[node name="finished" type="Button" parent="container/open-close" groups=["buttons"]]
+[node name="finished" type="Button" parent="container/open-close" groups=["set_disable_enable"]]
 margin_left = 477.0
 margin_right = 540.0
 margin_bottom = 25.0
