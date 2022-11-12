@@ -89,10 +89,10 @@ margin_bottom = 350.0
 alignment = 1
 
 [node name="add_new_commentary" type="Button" parent="container/option-comentary" groups=["set_disable_enable"]]
-margin_left = 180.0
-margin_right = 360.0
+margin_left = 204.0
+margin_right = 335.0
 margin_bottom = 20.0
-text = "Agregar nuevo comentario"
+text = "add new comment"
 
 [node name="box_commentary" type="ScrollContainer" parent="container"]
 margin_top = 355.0
@@ -158,14 +158,14 @@ margin_bottom = 124.0
 margin_right = 188.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
-text = "Agregar comentario"
+text = "add comment"
 
 [node name="cancel" type="Button" parent="new_comment_window/VBoxContainer/HBoxContainer"]
 margin_left = 192.0
 margin_right = 380.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
-text = "Cancelar"
+text = "cancel"
 
 [connection signal="popup_hide" from="." to="." method="_on_info_node_popup_hide"]
 [connection signal="pressed" from="container/subtasks/add_new_item" to="." method="_on_add_new_item_pressed"]

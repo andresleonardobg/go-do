@@ -14,8 +14,11 @@ var task_node = preload("res://addons/go-do/scenes/nodoTask.tscn")
 
 var mind_map_node : Node
 
+var count := 0
+
 #default functions
 func _ready() -> void:
+
 	if directory.file_exists(data_log):
 		load_data_log()
 	
@@ -28,8 +31,14 @@ func add_new_node( node_task_data : Dictionary, graph_panel : Node ):
 	
 	var new_node_task = task_node.instance()
 	new_node_task.info_about_node = node_task_data
-	
+
+	if !node_task_data.has("version"):
+		print("no tiene una versión")
+		new_node_task.info_about_node["version"] = count
+
 	graph_panel.add_child(new_node_task)
+
+	count += 1
 
 
 func save_data(path_data : String) -> void:

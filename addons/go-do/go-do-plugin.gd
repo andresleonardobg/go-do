@@ -1,7 +1,7 @@
 tool
 extends EditorPlugin
 
-const mindmap = preload("res://addons/go-do/scenes/mentalMap.tscn")
+const mindmap = preload("res://addons/go-do/scenes/mindMap.tscn")
 
 var mind_map_instance
 

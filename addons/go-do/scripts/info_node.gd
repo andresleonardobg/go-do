@@ -33,7 +33,7 @@ func _ready():
 	disable_or_enable_nodes()
 	
 	root = treee.create_item()
-	root.set_text(0, "Subtareas")
+	root.set_text(0, "Subtasks")
 
 	show_info_about_node()
 
@@ -168,7 +168,6 @@ func every_child_is_finished() -> bool:
 				print("children nodes has not finished yet")
 				return false
 				break
-	print("the node can be finished")
 	return true
 
 func _on_reopen_pressed() -> void:

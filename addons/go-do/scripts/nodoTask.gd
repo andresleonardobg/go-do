@@ -47,7 +47,7 @@ func set_info_about_node() -> void:
 	if "finished" in info_about_node:
 		node_task_finished( info_about_node["finished"] )
 	
-	#self.name = name + str(info_about_node["version"])
+	self.name = name + str(info_about_node["version"])
 	
 	title_node.text = info_about_node["name_task"]
 	
@@ -73,13 +73,15 @@ func node_task_finished( state : bool ) -> void:
 func set_finished_state_parent() -> void:
 	var nodes_on_grapht_edit = get_parent().get_children()
 	var parent_node : Node
-	print(info_about_node["parent_node"])
+	
 	if info_about_node["parent_node"] != "":
 		for node in nodes_on_grapht_edit:
 			if node.name == info_about_node["parent_node"]:
 				parent_node = node
-		parent_node.re_open()
-	connect("task_finished_state", parent_node, "re_open")
+				parent_node.re_open()
+	
+	if parent_node != null:
+		connect("task_finished_state", parent_node, "re_open")
 
 
 func re_open() -> void:
