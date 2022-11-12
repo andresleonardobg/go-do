@@ -1,7 +1,7 @@
 # GO-DO
 <p>A to-do plugin for godot.</p>
-<p>You can create mindmaps to divide ideas and tasks to develope you project, also in every node you can add a description, a list of subtasks, coments and edit his name.</p>
-<p>I hope this plugin can be helpful for you project.</p>
+<p>You can create mind maps to divide ideas and tasks to develop your project, also in every node you can add a description, a list of subtasks, comments and edit his name.</p>
+<p>I hope this plugin can be helpful for your project.</p>
 
 ![Alt Text](https://raw.githubusercontent.com/andresleonardobg/go-do/main/readme_assets/go-do-example.gif)
 
