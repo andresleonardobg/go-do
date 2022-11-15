@@ -34,6 +34,7 @@ func _process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+
 	if window_new_task:
 		if window_new_task.visible && window_text_task.text != "":
 			if Input.is_key_pressed(KEY_ENTER):

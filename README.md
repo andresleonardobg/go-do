@@ -8,6 +8,7 @@
 <h2>Installation</h2>
 <li>Create a folder in your project and name it addons.</li>
 <li>Download this project, copy the folder in addons called go-do and paste in your project's folder addons.</li>
+<li>Go to Project/project setting click on autoload and add the Global.gd file from this plugin and enable it.<li>
 <li>Go to Project/project setting, click on plugins and just enable GO-DO plugin.</li>
 <br>
 <p>Status: Alpha<p>

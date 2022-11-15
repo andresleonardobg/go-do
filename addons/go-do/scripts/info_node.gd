@@ -73,7 +73,7 @@ func _on_info_node_popup_hide():
 	
 	if title_panel.text != "":
 		node_task.info_about_node["name_task"] = title_panel.text
-#
+
 	if description.text != "":
 		node_task.info_about_node["description"] = description.text
 

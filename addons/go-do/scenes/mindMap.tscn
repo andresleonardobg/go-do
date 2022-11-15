@@ -21,6 +21,8 @@ custom_constants/separation = 5
 [node name="new" type="Button" parent="menu"]
 margin_right = 89.0
 margin_bottom = 20.0
+focus_mode = 0
+enabled_focus_mode = 0
 text = "New project"
 
 [node name="load" type="Button" parent="menu"]
@@ -63,6 +65,7 @@ margin_left = 345.0
 margin_top = 234.0
 margin_right = 645.0
 margin_bottom = 314.0
+popup_exclusive = true
 window_title = "New task"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -83,7 +86,7 @@ __meta__ = {
 
 [node name="window_text_task" type="TextEdit" parent="new_task/VBoxContainer"]
 margin_right = 280.0
-margin_bottom = 70.0
+margin_bottom = 46.0
 size_flags_horizontal = 7
 size_flags_vertical = 7
 shortcut_keys_enabled = false
@@ -107,7 +110,7 @@ size_flags_vertical = 5
 window_title = "Guardar un Archivo"
 resizable = true
 access = 2
-filters = PoolStringArray( "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files" )
+filters = PoolStringArray( "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files", "*.json ; JSON files" )
 show_hidden_files = true
 
 [connection signal="pressed" from="menu/new" to="." method="_on_new_pressed"]
@@ -116,5 +119,6 @@ show_hidden_files = true
 [connection signal="pressed" from="menu/save as" to="." method="_on_save_as_pressed"]
 [connection signal="pressed" from="menu/delete all nodes" to="." method="_on_delete_all_nodes_pressed"]
 [connection signal="connection_to_empty" from="GraphEdit" to="." method="_on_GraphEdit_connection_to_empty"]
+[connection signal="delete_nodes_request" from="GraphEdit" to="." method="_on_GraphEdit_delete_nodes_request"]
 [connection signal="pressed" from="new_task/VBoxContainer/Accept" to="." method="_on_Accept_pressed"]
 [connection signal="confirmed" from="FileDialog" to="." method="_on_FileDialog_confirmed"]
